@@ -4,7 +4,7 @@ const path = require('path');
 const { throttling } = require("@octokit/plugin-throttling");
 const MyOctokit = Octokit.plugin(throttling);
 const octokit = new MyOctokit({
-  auth: 'token ' + process.env.TOKEN,
+  auth: 'token ' + process.env.GH_TOKEN,
   throttle: {
     onRateLimit: (retryAfter, options) => {
       octokit.log.warn(

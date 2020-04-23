@@ -1,6 +1,72 @@
+## feat(react-core): bump core and fix build [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+**Button:** Remove isHover and isFocus props, all instances of them should be removed from your application.
+**Chip:** Remove isReadOnly prop, all instances of it should be removed from your application.
+**Dropdown:** Remove isHover and isFocus props from Toggle, KebabToggle, and DropdownToggle. All instances of them should be removed from your application.
+**Select:**
+- Remove isFocus prop from SelectOption, all instances of it should be removed from your application.
+- Remove isFocus and isHovered props from SelectToggle, all instances of them should be removed from your application.
+
+**Expandable:**
+- Rename component to ExpandableSection, all instances in your application should be renamed.
+- Remove isFocus and isHovered props from ExpandableSection, all instances of them should be removed from your application.
+
+**Label:** Remove isCompact prop from Label, all instances of it should be removed from your application.
+**Options menu:** Remove isFocused and isHovered prop from OptionsMenuToggle and OptionsMenuToggleWithText, all instances of it should be removed from your application.
+**Context selector:** Remove isHover prop from ContextSelectorItem. Remove isHovered and isFocused props from ContextSelectorToggle. All instances of these should be removed from your application.
+**Nav:** Change default theme to dark. Use theme="light" if you wish to use the light variant.
+**Skip to content:** Remove component prop in favor of anchor tag, all instances of it should be removed from your application.
+**Datatoolbar:** Remove separator variant, all instances of it should be removed from your application.
+**Wizard:** Remove isFullHeight and isFullWidth props, all instances of them should be removed from your application.
+**Page:** Change default theme to dark. Use theme="light" if you wish to use the light variant.
+
+## perf(packages): Use tsc instead of babel for build [(#4076)](https://github.com/patternfly/patternfly-react/pull/4076)
+**ALL packages:**
+
+- We no longer support UMD builds for individual packages. Consider using our [react-core.umd.js bundle](https://unpkg.com/@patternfly/react-core@3/dist/umd/react-core.umd.js) instead.
+- We no longer define `propTypes` for our components. Consider using our Typescript types under each packages' `dist/js` folder instead.
+
+## feat(react-inline-edit-extension): convert to TS [(#4073)](https://github.com/patternfly/patternfly-react/pull/4073)
+### @patternfly/react-virtualized-extension
+- Many types have been added and amended while converting this project to TS.
+
+## chore(EmptyStateIcon): Remove unused props interface from EmptyStateIcon [(#4065)](https://github.com/patternfly/patternfly-react/pull/4065)
+Removed IconSize and IconProps from EmptyStateIcon. 
+
+### react-core
+
+**Empty state:** Removed IconSize and IconProps from EmptyStateIcon. Pass a custom `icon` instead.
+
+Closes #3336
+
+## refactor(Wizard): Update string props to be React nodes. [(#4063)](https://github.com/patternfly/patternfly-react/pull/4063)
+1.  `WizardNavItem`: Renamed prop `text` to `content`.  The type of the prop has been changed to React.ReactNode to allow for flexibility.
+
+## feat(react-tokens): unify react-token generation [(#4058)](https://github.com/patternfly/patternfly-react/pull/4058)
+### react-tokens
+- Some of our tokens have had their values updated to be correct.
+- New files with a different structure have been added to the index.
+
+## Feat(Dropdown): add image & plain text support [(#4038)](https://github.com/patternfly/patternfly-react/pull/4038)
+* `iconComponent` prop in `DropdownToggle` has been renamed to `toggleIndicator`, replace instances of `iconComponent` with `toggleIndicator`.
+
+## fix(popover): update default popover header size [(#4030)](https://github.com/patternfly/patternfly-react/pull/4030)
+1. **Popover**: PopoverHeader title now has a default size of medium. Extra large is no longer the default size.
+
+## Remove promoted components from experimental index file [(#4029)](https://github.com/patternfly/patternfly-react/pull/4029)
+If you were importing beta components like this: 
+`‘import { Divider } from @patternfly/react-core/dist/esm/experimental’;` or 
+`'import { Divider } from '@patternfly/react-core/dist/esm/experimental/components/Divider';` 
+
+you will now need to import them like this:
+`'import { Divider } from '@patternfly/react-core/dist/esm/components';` or 
+`'import { Divider } from '@patternfly/react-core/dist/esm/components/Divider';`
+
 ## Merge master and bump @patternfly/patternfly to 4.6.0 [(#4022)](https://github.com/patternfly/patternfly-react/pull/4022)
+### react-core
 **Accordion:** Remove prop `noBoxShadow` per https://github.com/patternfly/patternfly/pull/2760 . If a shadow is needed, the accordion can be placed in a card, or a shadow can be applied either using CSS or a box-shadow utility class.
 **Page:** Remove prop `noPaddingMobile` from PageSection per https://github.com/patternfly/patternfly/pull/2816 . This note should be removed in favor of the PR that implements #4013.
+### react-tokens
+- The tokens `global_BackgroundColor_150`, and `global_BackgroundColor_300` have been removed (see associated [Core PR](https://github.com/patternfly/patternfly/pull/2818)). Consider using `global_BackgroundColor_200` with its new value `#f0f0f0` instead.
 
 ## fix(modal): default action alignment to left [(#4017)](https://github.com/patternfly/patternfly-react/pull/4017)
 1. **Modal**: Removes prop `isFooterLeftAligned `. This prop is no longer used.
