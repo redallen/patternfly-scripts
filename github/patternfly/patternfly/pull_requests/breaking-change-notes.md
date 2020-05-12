@@ -1,7 +1,230 @@
+## fix(emptystate): split single padding var to top/right/bottom/left [(#3092)](https://github.com/patternfly/patternfly/pull/3092)
+This PR removes `--pf-c-empty-state--Padding`. Any reference to that variable should be removed as it is no longer used.
+
+To change the empty state outer padding, use `--pf-c-empty-state--PaddingTop`, `--pf-c-empty-state--PaddingRight`, `--pf-c-empty-state--PaddingBottom`, and `--pf-c-empty-state--PaddingLeft` instead.
+
+## fix(page): removed pf-m-mobile/icon/user, added hidden/visible [(#3091)](https://github.com/patternfly/patternfly/pull/3091)
+* Adds `.pf-c-page__header-tools-item`, as a child of `.pf-c-page__header-tools-group` to wrap header tools items. All items should now be wrapped in `.pf-c-page__header-tools-item`.
+  * `.pf-c-page__header-tools-group` is required as a parent of `.pf-c-page__header-tools-item`
+* Removed the classes `.pf-m-icon`, `.pf-m-mobile`, and `.pf-m-user`, which were classes that allowed responsive hiding/showing of toolbar elements. These classes have been removed. Any reference to them should be removed.
+* Adds `.pf-m-hidden[-on-{breakpoint}]` and `.pf-m-visible[-on-{breakpoint}]` that can be applied to `pf-c-page__header-tools-[item/group]`. These classes replace `.pf-m-[icon/mobile/user]` for hiding/showing header tools items and groups.
+
+## fix(modal-box): added __header element [(#3084)](https://github.com/patternfly/patternfly/pull/3084)
+This PR adds a new element `header.pf-c-modal-box__header` that wraps the `.pf-c-modal-box__title` and `.pf-c-modal-box__description` elements. All instances of `.pf-c-modal-box__title` and `.pf-c-modal-box__description` should be wrapped in `.pf-c-modal-box__header`
+
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+  * `--pf-c-modal-box__title--PaddingTop` renamed to `--pf-c-modal-box__header--PaddingTop`
+  * `--pf-c-modal-box__title--PaddingRight` renamed to `--pf-c-modal-box__header--PaddingRight`
+  * `--pf-c-modal-box__title--PaddingLeft` renamed to `--pf-c-modal-box__header--PaddingLeft`
+  * `--pf-c-modal-box__title--last-child--PaddingBottom` renamed to `--pf-c-modal-box__header--last-child--PaddingBottom`
+  * `--pf-c-modal-box__title--body--PaddingTop` renamed to `--pf-c-modal-box__header--body--PaddingTop`
+
+The following variables were removed. Any reference to them should be removed as they are no longer used in patternfly.
+  * `--pf-c-modal-box__description--PaddingRight`
+  * `--pf-c-modal-box__description--PaddingLeft`
+  * `--pf-c-modal-box__description--last-child--PaddingBottom`
+  * `--pf-c-modal-box__description--body--PaddingTop`
+
+## fix(chip): adjusted chip top/bottom padding, chip group margin in select [(#3079)](https://github.com/patternfly/patternfly/pull/3079)
+This PR removes the following variables. Any reference to them should be removed as they are no longer used in patternfly.
+
+* `--pf-c-select__toggle-wrapper--c-chip--c-button--PaddingTop`
+* `--pf-c-select__toggle-wrapper--c-chip--c-button--PaddingBottom`
+
+## fix(table-vars): updated min-width vars, removed unused [(#3074)](https://github.com/patternfly/patternfly/pull/3074)
+The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
+* `--pf-c-table--thead--cell--Width`
+
+## fix(datalist): fix shadows on selected rows [(#3068)](https://github.com/patternfly/patternfly/pull/3068)
+TBD
+
+## fix(page): removed unnecessary vars [(#3066)](https://github.com/patternfly/patternfly/pull/3066)
+The CSS var `--pf-c-page__header-sidebar-toggle__c-button--xl--MarginLeft` was removed. All instances of this should be removed as it is no longer used in patternfly.
+
+## refactor(nav-structure): removed __simple-list, added support for -m-horizontal/-m-tertiary at root [(#3062)](https://github.com/patternfly/patternfly/pull/3062)
+This PR allows for navigation to be modified at the component root with `.pf-m-horizontal`, `.pf-m-tertiary` and `.pf-m-light` (vertical orientation only). The list component is now styled contextually by `.pf-c-nav__section`, `.pf-c-nav__subnav`, `.pf-c-nav__horizontal`, `.pf-c-nav__tertiary`. 
+
+`.pf-c-nav__simple-list`, `.pf-c-nav__horizontal-list` and `.pf-c-nav__tertiary-list` have been replaced by `.pf-c-nav__list`.
+
+The following classes have been removed. Any reference to them should be removed as they are no longer used in patternfly:
+* `.pf-c-nav__simple-list`
+* `.pf-c-nav__horizontal-list`
+* `.pf-c-nav__tertiary-list`
+
+The following variables have been renamed. Any reference to the old variable should be updated to use the new variable:
+* `--pf-c-nav__horizontal-list__link` has changed to `--pf-c-nav--m-horizontal__link` in all instances
+* `--pf-c-nav__tertiary-list__link` has changed to `--pf-c-nav--m-tertiary__link` in all instances
+* `--pf-c-nav--subnav__simple-list` has changed to `--pf-c-nav__subnav__link` in all instances
+
+Some of the general CSS structure has also changed, so please reference the [file changeset](https://github.com/patternfly/patternfly/pull/3062/files).
+
+## fix(chip-group): refactored structure so chip-group no longer nests [(#3058)](https://github.com/patternfly/patternfly/pull/3058)
+This PR introduces breaking structural changes to the chip and chip group components.
+
+The structure has changed to
+
+#### Plain chip groups (no label)
+```
+div.chip-group
+  ul.chip-group-list[aria-label="foo"][role="list"]
+    li.chip-group-list-item
+       div.chip
+```
+
+#### Chip groups with label
+```
+div.chip-group
+  span.chip-group-title[aria-hidden="true"][id="foo"]
+  ul.chip-group-list[aria-labelledby="foo"][role="list"]
+    li.chip-0-list-item
+       div.chip
+    li.chip-group-list-item
+       div.chip
+```
+
+* The outer `.pf-c-chip-group` element should now always be a `<div>`. All instances of `.pf-c-chip-group` should be updated to be a `<div>`.
+* `.pf-c-chip-group__label` is now a `<span>` instead of a heading element.
+* `.pf-c-chip-group__label` should have an `id` value that will be used as the value for `aria-labelledby` on the `ul.pf-c-chip-group__list` element.
+* Since the text in `.pf-c-chip-group__label` is read to screen readers via `aria-labelledby` on the `pf-c-chip-group__list` element, `.pf-c-chip-group__label` should now also have `aria-hidden="true"`.
+* The list of chips inside of a chip group should be wrapped in a `<ul>` with the class `pf-c-chip-group__list`. 
+* `.pf-c-chip-group__list` should have a (redundant) `role="list"` assigned. This is needed for screen readers to announce the list properly.
+* Chips inside of `.pf-c-chip-group__list` should each be wrapped with a `li.pf-c-chip-group__list-item` element. 
+* Chips are now a `<div>` by default now. When used in a chip-group, `div.pf-c-chip` is a child of `ul.pf-c-chip-group__list > li.pf-c-chip-group__list-item`
+
+The following variables were renamed. All instances of the old variable should be updated to reference the new variable instead.
+* `--pf-c-chip-group--MarginBottom` was renamed to `--pf-c-chip-group__list--MarginBottom`
+* `--pf-c-chip-group__label--PaddingRight` was renamed to `--pf-c-chip-group__label--MarginRight`
+* `--pf-c-chip-group__label--Maxwidth` was renamed to `--pf-c-chip-group__label--Maxwidth`
+* `--pf-c-chip-group--c-chip--MarginRight` was changed to `--pf-c-chip-group__list-item--MarginRight`
+* `--pf-c-chip-group--c-chip--MarginBottom` was changed to `--pf-c-chip-group__list-item--MarginBottom`
+
+## fix(pagination): updated bottom pagination design [(#3050)](https://github.com/patternfly/patternfly/pull/3050)
+This PR makes a number of changes to the pagination component.
+
+* The bottom pagination mobile design has changed. On mobile viewports, the bottom pagination now spans the width of the parent container and is "sticky" to the bottom of the viewport and will remain at the bottom of the viewport as content above it scrolls. This behavior can be disabled by applying `.pf-m-static` to the `.pf-c-pagination` component.
+  * Since the pagination now spans the width of it's parent container on mobile, it should not be used in a toolbar, and the bottom pagination should be placed directly after the element the pagination is for (data-list, table, etc).
+  * On desktop screens, the pagination retains its original design, which matches the top pagination.
+* Renames the bottom pagination from `.pf-m-footer` to `.pf-m-bottom` to align with React. All use of `.pf-c-pagination.pf-m-footer` should change to `.pf-c-pagination.pf-m-bottom`.
+  * All pagination component CSS variables with `m-footer` in the string should change to `m-bottom`. 
+* The buttons used in `.pf-c-pagination__nav` are now individually wrapped with `div.pf-c-pagination__nav-control`, and this new element has modifiers `.pf-m-first`, `.pf-m-prev`, `.pf-m-next`, and `.pf-m-last` to indicate the first, previous, next, and last buttons. The "first" button should now be wrapped in `<div class="pf-c-pagination__nav-control pf-m-first">// first button</div>`, the "next" wrapped in `<div class="pf-c-pagination__nav-control pf-m-next">// next button</div>`, and so on.
+* The following variables were renamed and the old variable name should be updated to reflect the new name
+  * `--pf-c-pagination__nav--c-button--PaddingLeft` changed to `--pf-c-pagination__nav-control--c-button--PaddingLeft`
+  * `--pf-c-pagination__nav--c-button--PaddingRight` changed to `--pf-c-pagination__nav-control--c-button--PaddingRight`
+  * `--pf-c-pagination__nav--c-button--FontSize` changed to `--pf-c-pagination__nav-control--c-button--FontSize`
+  * `--pf-c-pagination--m-compact__nav--c-button--MarginLeft` changed to `--pf-c-pagination--m-compact__nav-control--nav-control--MarginLeft`
+
+## fix(button): updated control variation disabled state [(#3049)](https://github.com/patternfly/patternfly/pull/3049)
+#### Button
+
+This PR updates the visuals of the control button disabled state.
+
+* The following variables were removed. All references to them should be removed as they are no longer used in patternfly.
+  * `--pf-c-button--m-control--disabled--after--BorderTopColor`
+  * `--pf-c-button--m-control--disabled--after--BorderRightColor`
+  * `--pf-c-button--m-control--disabled--after--BorderBottomColor`
+  * `--pf-c-button--m-control--disabled--after--BorderLeftColor`
+
+#### Form Control
+
+* `--pf-c-form-control--readonly--focus--BackgroundColor` was renamed to `--pf-c-form-control--readonly--BackgroundColor`. All references to the old variable name should be updated to reference the new variable name instead.
+* `--pf-c-form-control--readonly--focus--PaddingBottom` was removed. Any reference to it should be removed as it is no longer used in patternfly.
+
+## fix(pagination): removed options menu per page text styling [(#3047)](https://github.com/patternfly/patternfly/pull/3047)
+This PR removes the `.pf-c-pagination__menu-text` element from the pagination options menu items. The options menu item text should just be normal text.
+
+Any use of the class `.pf-c-pagination__menu-text` or the vars `--pf-c-pagination__menu-text--PaddingLeft`, `--pf-c-pagination__menu-text--FontSize` and `--pf-c-pagination__menu-text--Color` should be removed as they are no longer used in patternfly.
+
+## fix(data-toolbar): renamed data-toolbar to toolbar [(#3046)](https://github.com/patternfly/patternfly/pull/3046)
+This PR renames the `.pf-c-data-toolbar` component to `.pf-c-toolbar`. All use of the `.pf-c-data-toolbar*` classes and `--pf-c-data-toolbar*` variables should be updated to be `.pf-c-toolbar*` and `--pf-c-toolbar*` instead.
+
+## fix(toolbar): removed toolbar layout [(#3045)](https://github.com/patternfly/patternfly/pull/3045)
+This PR removes the `.pf-l-toolbar` from PatternFly. Any use of the layout, classes, CSS vars, etc should be removed.
+
+## fix(toolbar): removes pf-c-toolbar component [(#3039)](https://github.com/patternfly/patternfly/pull/3039)
+This PR removes the `.pf-c-toolbar` component. This component is being replaced with what is currently the `.pf-c-data-toolbar` component, which will be renamed to `.pf-c-toolbar` in a subsequent PR.
+
+All use of the `.pf-c-toolbar` component - classes, variables, etc should be removed as the component is removed from PatternFly.
+
+## fix(components): add pf-m-active to toggles [(#3038)](https://github.com/patternfly/patternfly/pull/3038)
+TBD
+
+## fix(components): split out transform variables [(#3037)](https://github.com/patternfly/patternfly/pull/3037)
+TBD
+
+## fix(card): moved __header to __title, __head to __header [(#3035)](https://github.com/patternfly/patternfly/pull/3035)
+This PR renames the `.pf-c-card__header` element to `.pf-c-card__title`, and removes the dependency of `.pf-c-title` from `.pf-c-card__title`. And that allows us to rename `.pf-c-card__head` to `.pf-c-card__header`.
+
+The following elements' classes have changed. Any reference to the old class should be updated to reference the new class instead.
+
+* `.pf-c-card__header` has been renamed to `.pf-c-card__title`.  Also `.pf-c-title` and the title size modifiers should be removed from `.pf-c-card__title`.
+* `.pf-c-card__head` has been renamed to `.pf-c-card__header`. 
+* `.pf-c-card__head-main` has been renamed to `.pf-c-card__header-main`.
+
+The following variables were renamed. Any reference to the old variable name should be updated to reference the new name instead.
+
+* `--pf-c-card--m-compact__header--not--last-child--PaddingBottom` was renamed to `--pf-c-card--m-compact__title--not--last-child--PaddingBottom`
+* `--pf-c-card__header--FontFamily` was renamed to `--pf-c-card__title--FontFamily`
+* `--pf-c-card__header--FontWeight` was renamed to `--pf-c-card__title--FontWeight`
+* `--pf-c-card__header--not--last-child--PaddingBottom` was renamed to `--pf-c-card__title--not--last-child--PaddingBottom`
+* `--pf-c-card__header--not--last-child--PaddingBottom` was renamed to `--pf-c-card__title--not--last-child--PaddingBottom`
+
+## fix(button): clean up vars [(#3028)](https://github.com/patternfly/patternfly/pull/3028)
+TBD
+
+## fix(switch): clean up vars [(#3026)](https://github.com/patternfly/patternfly/pull/3026)
+TBD
+
+## fix(datalist): clean up vars [(#3025)](https://github.com/patternfly/patternfly/pull/3025)
+TBD
+
+@mcoker do you know what causes `pf-c-data-list__item .pf-m-selectable` to show the border-bottom? I see it on master, but I don't see it on v4 , do you know if it was removed purposely?
+
+v4:
+<img width="963" alt="Screen Shot 2020-04-27 at 11 21 24 AM" src="https://user-images.githubusercontent.com/20118816/80389610-464b9400-8879-11ea-9c2d-0cafe8f9e0c9.png">
+
+master:
+<img width="1147" alt="Screen Shot 2020-04-27 at 11 21 19 AM" src="https://user-images.githubusercontent.com/20118816/80389604-451a6700-8879-11ea-88c7-5348312f7435.png">
+
+## fix(dropdown): cleanup vars [(#3020)](https://github.com/patternfly/patternfly/pull/3020)
+TBD
+
+## fix(select): cleanup vars [(#3019)](https://github.com/patternfly/patternfly/pull/3019)
+Will fill in this section once the PR is reviewed.
+
+## fix(optionsmenu): clean up vars [(#3018)](https://github.com/patternfly/patternfly/pull/3018)
+* Renames the following variables:
+
+* `--pf-c-options-menu__toggle--Background` to `--pf-c-options-menu__toggle--BackgroundColor`
+* `--pf-c-options-menu__toggle-button--Background` to `--pf-c-options-menu__toggle-button--BackgroundColor`
+* `--pf-c-options-menu__menu-item--Background` to `--pf-c-options-menu__menu-item--BackgroundColor`
+
+## fix(accordion): clean up vars [(#3016)](https://github.com/patternfly/patternfly/pull/3016)
+Will add to this once PR is reviewed
+
+## fix(vars): remove golden ratio var [(#3014)](https://github.com/patternfly/patternfly/pull/3014)
+* Removes `--pf-global--golden-ratio` and `$pf-global--golden-ratio` all instances of the variable should be removed in your application.
+
+## fix(wizard): cleanup vars [(#3013)](https://github.com/patternfly/patternfly/pull/3013)
+* Removes `--pf-c-wizard__toggle-icon--MarginTop` all instances should be removed from your application.
+
+## fix(applauncher): clean up variables [(#3012)](https://github.com/patternfly/patternfly/pull/3012)
+* Removes the following variables. All instances of them should be removed from your application:
+* `--pf-c-app-launcher__group--PaddingTop`
+* `--pf-c-app-launcher__group--first-child--PaddingTop`
+
+## fix(backdrop): removed blur, renamed var [(#3009)](https://github.com/patternfly/patternfly/pull/3009)
+This PR removes the blur from the backdrop component. This is a visual change only and no further updates are needed to consume this change.
+
+The variable `--pf-c-backdrop--BackdropFilter` was removed. Any reference to it should be removed as it is no longer used in patternfly.
+
+The variable `--pf-c-backdrop--Color` was renamed to `--pf-c-backdrop--BackgroundColor`. Any reference to the old variable name should be updated to reference the new variable name.
+
+## fix(nav): made nav__list a flex parent [(#3006)](https://github.com/patternfly/patternfly/pull/3006)
+Adds `display: flex; flex-direction: column;` to `.pf-c-nav__list`. This is a CSS only change and does not require any further updates to consume. However if applications have custom CSS for `.pf-c-nav__list`, the spacing and behavior may change with this update.
+
 ## refactor(nav-and-sidebar-theme): updated nav to dark theme [(#2978)](https://github.com/patternfly/patternfly/pull/2978)
 This PR updates the default theme for navigation and all variants as well as sidebar from light to dark.
 * Adds `pf-m-horizontal` for horizontal layout
-* Adds `pf-m-light` for light theme nav
 
 The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
 * `--pf-c-nav__scroll-button--disabled--Color`
@@ -10,39 +233,41 @@ The following variables have been removed. Any reference to them should be remov
 * All `--pf-c-nav--m-dark`
 
 ## fix(components): remove hover active focus and disabled from workspace [(#2975)](https://github.com/patternfly/patternfly/pull/2975)
-- Removes the class `pf-m-hover` from the About Modal Box component. All instances of it should be removed. The `:hover` selector still has styles applied to it.
+- Removes the class `pf-m-hover` from the About Modal Box component's close button. All instances of it should be removed. The `:hover` selector still has styles applied to it.
 
-- Removes the class `pf-m-hover`, `pf-m-active` and `pf-m-focus` from the Accordion component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to it.
+- Removes the class `pf-m-hover`, `pf-m-active` and `pf-m-focus` from the Accordion component's toggle buttons. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to it.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the App Launcher component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to it.
+- Removes the class `pf-m-hover`, `pf-m-active`, `pf-m-focus`, and `pf-m-disabled` from the App Launcher component's toggle. All instances of it should be removed. The `:hover`, `:active`, `:focus`, and `disabled` selectors still have styles applied to it.
 
-- Removes the class `pf-m-hover` from the Breadcrumb component. All instances of it should be removed. The `:hover` selector still has styles applied to it.
+- Removes the class `pf-m-hover` from the Breadcrumb component's `.pf-c-breadcrumb__link` element. All instances of it should be removed. The `:hover` selector still has styles applied to it.
 
 - Removes the class `pf-m-hover`, and `pf-m-focus` from the Button component. All instances of it should be removed. The `:hover` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Chip component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
+- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Chip component's overflow chip. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Context Selector component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
+- Removes the classes `pf-m-hover` and `pf-m-active`,  and `pf-m-focus` from the Context Selector component toggle. Removes `pf-m-hover`, `pf-m-focus`, and `pf-m-disabled` from the context selector item (`.pf-c-context-selector__menu-list-item`). All instances of these classes should be removed. The `:hover`, `:active`, `:focus`, and `:disabled` selectors still have styles applied to them.
 
 - Removes the class `pf-m-hover`, `pf-m-active`, `pf-m-focus` and `pf-m-disabled` from the Context Selector component. All instances of it should be removed. The `:hover`, `:active`, `:disabled` and `:focus` selectors still have styles applied to them.
 
--  Removes the class `pf-m-hover` and `pf-m-focus` from the Dropdown component. All instances of it should be removed. The `:hover` and `:focus` selectors still have styles applied to them.
+-  Removes the class `pf-m-hover` and `pf-m-focus` from the Dropdown component toggle and item (`.pf-c-dropdown__menu-item`). All instances of it should be removed. The `:hover` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Expandable Section component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
+- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Expandable Section component's toggle. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-disabled` from the File Upload component. All instances of it should be removed. The `:disabled` selector will still have styles applied to it.
+- Removes the class `pf-m-disabled` from the File Upload component's `.pf-c-file-upload__file-select` element. All instances of it should be removed. The `:disabled` selector will still have styles applied to it.
 
 -  Removes the class `pf-m-hover` and `pf-m-focus` from the Form Control component. All instances of it should be removed. The `:hover` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Nav component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
+- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Nav component's `.pf-c-nav__link` element. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Select component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
+- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Options menu component toggle. Removes `pf-m-hover`  and `pf-m-focus` from the `.pf-c-options-menu__menu-item` element. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
 
-- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Simple List component. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
+- Removes the class `pf-m-hover` and `pf-m-active`,  and `pf-m-focus` from the Select component toggle.  Removes `pf-m-hover` and `pf-m-focus` from the `.pf-c-select__menu-item` element. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
 
--  Removes the class `pf-m-focus` from the Skip to Content component. All instances of it should be removed. The `:focus` selectors still have styles applied to them.
+- Removes the class `pf-m-hover`, `pf-m-active`,  and `pf-m-focus` from the Simple List component's `.pf-c-simple-list__item-link` element. All instances of it should be removed. The `:hover`, `:active` and `:focus` selectors still have styles applied to them.
 
--  Removes the class `pf-m-hover` and `pf-m-focus` from the Wizard component. All instances of it should be removed. The `:hover` and `:focus` selectors still have styles applied to them.
+-  Removes the class `pf-m-focus` from the Skip to Content component. All instances of it should be removed. The `:focus` selector still has styles applied to it.
+
+-  Removes the class `pf-m-hover` and `pf-m-focus` from the Wizard component's `.pf-c-wizard__nav-link` element. All instances of it should be removed. The `:hover` and `:focus` selectors still have styles applied to them.
 
 ## fix(modal): added title, moved padding from container to elements [(#2969)](https://github.com/patternfly/patternfly/pull/2969)
 This PR moves the outer padding on the modal from the `.pf-c-modal-box` container to the modal box elements that are children of the modal. To better achieve this spacing, we have dropped the use of the title component to serve as the modal title, and this is now an element of the modal component called `.pf-c-modal-box__title`. Any instance of `.pf-c-title` in the modal that serves as the modal title should be replaced with `.pf-c-modal-box__title`.
@@ -67,20 +292,15 @@ The following variables have been renamed. Any reference to the old name should 
 ## fix(table-row-height): fixed borders, row height, focus [(#2965)](https://github.com/patternfly/patternfly/pull/2965)
 This PR fixes multiple table issues. 
 * Adds dedicated table button `.pf-c-table__button`: this button relies on `::after` pseudo element to define clickable area, as previous height hacks cause cross browser bugs. `focus-ring` is disabled on this button and applied to the parent table cell.
+* Adds `.pf-c-table__button-content` to `.pf-c-table__sort` for layout as `button` s don't yet support `display: grid`.
 * Hover, focus, active and selected states `.pf-c-table__sort` and `.pf-c-table__compound-expansion-toggle`: updates border discrepancies using `::before` and `::after` pseudos and negative offsets.
 * Adds text wrapping control `.pf-m-truncate`, `.pf-m-wrap`, `.pf-m-no-wrap`, `.pf-m-break-word` and `.pf-m-fit-content`.
 * Adds `.pf-c-table__text` wrapper for grid layout truncation/wrapping control.
 
-// Will update when approved
-
-The following classes have been removed. Any reference to them should be removed as they are no longer used in patternfly:
-* `.`
-
-The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
-* `--`
-
 The following variables have been renamed. Any reference to the old variable should be updated to use the new variable:
-* `--pf-c-` has changed to `--pf-c-`
+* All instances of `--pf-c-table-cell--` has changed to `--pf-c-table--cell--`
+
+`.pf-m-height-auto` is no longer necessary, so the modifier class was removed. All instances of it should be removed.
 
 Some of the general CSS structure has also changed, so please reference the [file changeset](https://github.com/patternfly/patternfly/pull/2965/files).
 
@@ -280,16 +500,25 @@ Some of the general CSS structure has also changed, so please reference the [fil
   * ` --pf-c-chip--m-overflow--c-button--PaddingLeft`
   * `--pf-c-chip--m-overflow--c-button--PaddingRight`
   *  `--pf-c-chip--m-overflow--c-button--hover--BorderWidth`
+  *  `--pf-c-chip--m-overflow--c-button--hover--BorderColor`
   * `--pf-c-chip--m-overflow--c-button--active--BorderWidth`
+  * `--pf-c-chip--m-overflow--c-button--active--BorderColor`
   * `--pf-c-chip--m-overflow--c-button--focus--BorderWidth`
+  * `--pf-c-chip--m-overflow--c-button--focus--BorderColor`
 
 * The following variables were renamed from the overflow chip component:
+  * `--pf-c-chip--BorderColor` to `--pf-c-chip--before--BorderColor`
+  * `--pf-c-chip--BorderWidth` to `--pf-c-chip--before--BorderWidth`
+  * `--pf-c-chip--BorderRadius` to `--pf-c-chip--before--BorderRadius`
   * `--pf-c-chip--m-overflow--c-button--hover--BorderColor` to `--pf-c-chip--m-overflow--hover--before--BorderColor`
   * `--pf-c-chip--m-overflow--c-button--active--BorderColor` to `--pf-c-chip--m-overflow--active--before--BorderColor`
   * `--pf-c-chip--m-overflow--c-button--focus--BorderColor` to `--pf-c-chip--m-overflow--focus--before--BorderColor`
+  * `--pf-c-chip--c-badge--MarginLeft` to `--pf-c-chip__c-badge--MarginLeft`
 
 
-* `--pf-c-chip--BorderColor` replaced `var(--pf-global--secondary-color--100)` with `var(--pf-global--BackgroundColor--200)`. This is just a visual change, no updates are needed.
+* the color for `--pf-c-chip--BorderColor` changed from `var(--pf-global--secondary-color--100)` to `var(--pf-global--BorderColor--300)`. This is just a visual change, no updates are needed.
+
+* The "x" icon in the close button changed from `fa-times-circle` to `fa-times`
 
 ## fix(global vars): updated pf-color-green-50 [(#2940)](https://github.com/patternfly/patternfly/pull/2940)
 This PR changes `$pf-color-green-50` to `#f3faf2`. This is a visual change only. No further updates are needed to consume this change.
@@ -317,10 +546,14 @@ The following variables have been removed and any reference to them should be re
 * `--pf-c-input-group--c-button--BorderRadius`
 
 ## fix(content): margin should not be on first-child or last-child [(#2930)](https://github.com/patternfly/patternfly/pull/2930)
-* If you are using `pf-c-content` in your application you may need to check to see if this change impacts the UI. The margin-bottom may now be removed if using h1-h6, and the margin-bottom may now be removed if using `<ol>` and `<ul>`.
+* If you are using `pf-c-content` in your application you may need to check to see if this change impacts the UI. 
+* The margin-bottom has been removed when the element is last-child for `<h1> - <h6>`
+* The margin-top has been removed from  `<ol>` and `<ul>`.
 
-* Removes the margin-bottom from `h1-h6` if its the last child. 
-* Removes the margin-top from `<ol>` and `<ul>` if its the first-child.
+* The following variables have been removed. Please remove all instances of them from your application:
+* `--pf-c-content--small--FontWeight`
+* `--pf-c-content--ol--MarginTop`
+* `--pf-c-content--ul--MarginTop`
 
 ## fix(form): moved helper text icon from login to form component [(#2928)](https://github.com/patternfly/patternfly/pull/2928)
 This PR moves the form helper text icon feature from the login component back into the form component.
@@ -331,7 +564,26 @@ This PR moves the form helper text icon feature from the login component back in
   * `--pf-c-login__main-body--c-form__helper-text-icon--MarginRight` has been renamed to `--pf-c-form__helper-text-icon--MarginRight`
 
 ## fix(components): add wrapper with classname to all icons [(#2927)](https://github.com/patternfly/patternfly/pull/2927)
-... will add these in once the PR is reviewed
+*The following classes should be removed from icons directly and moved to a new element that wraps the icon.
+* `.pf-c-accordion__toggle-icon` 
+*  `.pf-c-context-selector__toggle-icon`
+* `.pf-c-expandable-section__toggle-icon`
+  * the text is now also wrapped in a `<span>` with class `.pf-c-expandable-section__toggle-text`
+* `.pf-c-options-menu__menu-item-icon`
+* `.pf-c-options-menu__toggle-icon`
+* `.pf-c-select__toggle-arrow`
+* `.pf-c-select__menu-item-icon`
+* `.pf-c-wizard__toggle-icon`
+
+* The icon in `.pf-c-options-menu__toggle-button` should be wrapped in a new element with class `.pf-c-options-menu__toggle-button-icon`
+
+* The icon in the button in `.pf-c-table__toggle` should be wrapped with a new element with class `.pf-c-table__toggle-icon`
+
+* The icon in the button in `.pf-c-data-list__toggle` should be wrapped with a new element with class `.pf-c-data-list__toggle-icon` - wrapper should be a `<div>`
+
+* The icon in `.pf-c-nav__toggle` should be wrapped in a new element with class `.pf-c-nav__toggle-icon`
+
+* removes the variable `--pf-c-expandable-section__toggle-icon--MarginRight`
 
 ## fix(wizard): move modifier to body [(#2924)](https://github.com/patternfly/patternfly/pull/2924)
 * Moves `pf-m-no-padding` from `.pf-c-wizard__main` to `.pf-c-wizard__main-body` . The same styling will occur to the wizard main body. If you want to remove padding in the wizard main body you should add `pf-m-no-padding` to `.pf-c-wizard__main-body` now.
@@ -345,49 +597,52 @@ This PR moves the form helper text icon feature from the login component back in
 * Removes the elements with classes `.pf-c-clipboard-copy__group-toggle` and `.pf-c-clipboard-copy__group-copy`. All instances of these elements should be removed from your application and replaced with the button control component: `.pf-c-button.pf-m-control` .
 
 * Renames the following variables. Any references of these variables should be update to reference the new variable name.
-`--pf-c-clipboard-copy__group-toggle-icon--Transition` to `--pf-c-clipboard-copy__toggle-icon--Transition`
-* `--pf-c-clipboard-copy--m-expanded__group-toggle-icon--Transform` to `--pf-c-clipboard-copy--m-expanded__toggle-icon--Transform`
+  * `--pf-c-clipboard-copy__group-toggle-icon--Transition` to `--pf-c-clipboard-copy__toggle-icon--Transition`
+  * `--pf-c-clipboard-copy--m-expanded__group-toggle-icon--Transform` to `--pf-c-clipboard-copy--m-expanded__toggle-icon--Transform`
 
 * Removes the following variables, all instances of them should be removed from your application:
-*  `--pf-c-clipboard-copy__group-toggle--PaddingRight`
-*  `--pf-c-clipboard-copy__group-toggle--PaddingLeft`
-* `--pf-c-clipboard-copy__group-toggle--BorderWidth`
-* `--pf-c-clipboard-copy__group-toggle--BorderTopColor`
-* `--pf-c-clipboard-copy__group-toggle--BorderRightColor`
-* `--pf-c-clipboard-copy__group-toggle--BorderBottomColor`
-* ` --pf-c-clipboard-copy__group-toggle--BorderLeftColor`
-* `--pf-c-clipboard-copy__group-toggle--hover--BorderBottomColor`
-* `--pf-c-clipboard-copy__group-toggle--active--BorderBottomWidth`
-* `--pf-c-clipboard-copy__group-toggle--active--BorderBottomColor`
-* `--pf-c-clipboard-copy__group-toggle--focus--BorderBottomWidth`
-* `--pf-c-clipboard-copy__group-toggle--focus--BorderBottomColor`
-* `--pf-c-clipboard-copy__group-toggle--m-expanded--BorderBottomWidth`
-* `--pf-c-clipboard-copy__group-toggle--m-expanded--BorderBottomColor`
-* `--pf-c-clipboard-copy__group-toggle--OutlineOffset`
-* `--pf-c-clipboard-copy__group-copy--PaddingRight`
-* `--pf-c-clipboard-copy__group-copy--PaddingLeft`
-*  `--pf-c-clipboard-copy__group-copy--BorderWidth`
- * `--pf-c-clipboard-copy__group-copy--BorderTopColor`
- * `--pf-c-clipboard-copy__group-copy--BorderRightColor`
- * `--pf-c-clipboard-copy__group-copy--BorderBottomColor`
- *  `--pf-c-clipboard-copy__group-copy--BorderLeftColor`
- * `--pf-c-clipboard-copy__group-copy--hover--BorderBottomColor`
- * `--pf-c-clipboard-copy__group-copy--active--BorderBottomWidth`
- * `--pf-c-clipboard-copy__group-copy--active--BorderBottomColor`
+  *  `--pf-c-clipboard-copy__group-toggle--PaddingRight`
+  *  `--pf-c-clipboard-copy__group-toggle--PaddingLeft`
+  * `--pf-c-clipboard-copy__group-toggle--BorderWidth`
+  * `--pf-c-clipboard-copy__group-toggle--BorderTopColor`
+  * `--pf-c-clipboard-copy__group-toggle--BorderRightColor`
+  * `--pf-c-clipboard-copy__group-toggle--BorderBottomColor`
+  * ` --pf-c-clipboard-copy__group-toggle--BorderLeftColor`
+  * `--pf-c-clipboard-copy__group-toggle--hover--BorderBottomColor`
+  * `--pf-c-clipboard-copy__group-toggle--active--BorderBottomWidth`
+  * `--pf-c-clipboard-copy__group-toggle--active--BorderBottomColor`
+  * `--pf-c-clipboard-copy__group-toggle--focus--BorderBottomWidth`
+  * `--pf-c-clipboard-copy__group-toggle--focus--BorderBottomColor`
+  * `--pf-c-clipboard-copy__group-toggle--m-expanded--BorderBottomWidth`
+  * `--pf-c-clipboard-copy__group-toggle--m-expanded--BorderBottomColor`
+  * `--pf-c-clipboard-copy__group-toggle--OutlineOffset`
+  * `--pf-c-clipboard-copy__group-copy--PaddingRight`
+  * `--pf-c-clipboard-copy__group-copy--PaddingLeft`
+  *  `--pf-c-clipboard-copy__group-copy--BorderWidth`
+  * `--pf-c-clipboard-copy__group-copy--BorderTopColor`
+  * `--pf-c-clipboard-copy__group-copy--BorderRightColor`
+  * `--pf-c-clipboard-copy__group-copy--BorderBottomColor`
+  *  `--pf-c-clipboard-copy__group-copy--BorderLeftColor`
+  * `--pf-c-clipboard-copy__group-copy--hover--BorderBottomColor`
+  * `--pf-c-clipboard-copy__group-copy--active--BorderBottomWidth`
+  * `--pf-c-clipboard-copy__group-copy--active--BorderBottomColor`
   * `--pf-c-clipboard-copy__group-copy--focus--BorderBottomWidth`
   * `--pf-c-clipboard-copy__group-copy--focus--BorderBottomColor`
 
 ## fix(alerts): update styling for better accessibility [(#2921)](https://github.com/patternfly/patternfly/pull/2921)
-* Adds `pf-c-alert__action-group` class. This class should be used to wrap the action buttons at the bottom of the alert.
-
 * Updates the global info color - `$pf-global--info-color--100` from `$pf-color-blue-200` to  `$pf-color-blue-300`. This is a visual breaking change only. No further changes are needed to consume this change. If you were using the global info color in your application this change will visually effect your UI.
 
 * The variable name `--pf-c-alert--grid-template-columns` changed to `--pf-c-alert--GridTemplateColumns`. Any instance of `--pf-c-alert--grid-template-columns` should be replaced with `--pf-c-alert--GridTemplateColumns`
+
+* The icon used in the alert is `fas fa-fw fa-[alert-icon-name]` as it controls the width of the icon.
+
+* The only action that should go in `.pf-c-alert__action` is the close button. All other actions should be in a new element with the class `pf-c-alert__action-group` that should be appended to `.pf-c-alert`
 
 *Removed these variables:
   *  `--pf-c-alert--grid-template-rows`
   * `--pf-c-alert__icon--Padding`
   * `--pf-c-alert__icon--BackgroundColor`
+  * `--pf-c-alert__title--FontSize`
   * `--pf-c-alert__title--PaddingTop`
   * `--pf-c-alert__title--PaddingRight`
   * `--pf-c-alert__title--PaddingBottom`
@@ -398,7 +653,7 @@ This PR moves the form helper text icon feature from the login component back in
   * `--pf-c-alert__description--MarginTop`
   * `--pf-c-alert__action--PaddingTop`
   * `--pf-c-alert__action--PaddingRight`
-  *`--pf-c-alert--m-success__icon--BackgroundColor`
+  * `--pf-c-alert--m-success__icon--BackgroundColor`
   * `--pf-c-alert--m-danger__icon--BackgroundColor`
   * `--pf-c-alert--m-warning__icon--BackgroundColor`
   * `--pf-c-alert--m-warning__icon--FontSize`
