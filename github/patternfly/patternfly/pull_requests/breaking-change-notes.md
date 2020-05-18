@@ -1,3 +1,51 @@
+## fix(table-grid): move borders to ::after [(#3113)](https://github.com/patternfly/patternfly/pull/3113)
+This PR updates `.pf-c-table` borders to use `::after` pseudos to draw borders, rather than `::before` pseudos. 
+
+The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
+* `--pf-c-table__expandable-row--before--BorderRightWidth`
+
+The following variables have been renamed. Any reference to the old variable should be updated to use the new variable:
+* `--pf-c-table-tbody--responsive—BorderWidth` has changed to `--pf-c-table--tbody--responsive--border-width--base`
+* `--pf-c-table--tbody--after—BorderWidth` has changed to `--pf-c-table--tbody--after--border-width—base`
+* `--pf-c-table-tr--responsive—BorderWidth` has changed to `--pf-c-table-tr--responsive--border-width—base`
+* `--pf-c-table-tr--responsive--last-child—BorderWidth` has changed to `--pf-c-table-tr--responsive--last-child—BorderBottomWidth`
+* `--pf-c-table-tbody--responsive—BorderWidth` has changed to `--pf-c-table-tbody--responsive--border-width--base`
+* `--pf-c-table-tr--responsive—BorderWidth` has changed to `--pf-c-table-tr--responsive--border-width--base`
+* `--pf-c-table--BorderWidth` has changed to `--pf-c-table--border-width--base`
+* `--pf-c-table__expandable-row--before--Top` has changed to `--pf-c-table__expandable-row--after--Top`
+* `--pf-c-table__expandable-row--before--Bottom` has changed to `--pf-c-table__expandable-row--after--Bottom`
+* `--pf-c-table__expandable-row--before--BorderWidth` has changed to `--pf-c-table__expandable-row--after--border-width--base`
+* `--pf-c-table__expandable-row--before--BorderLeftWidth` has changed to `--pf-c-table__expandable-row--after--BorderLeftWidth`
+* `--pf-c-table__expandable-row--before--BorderColor` has changed to `--pf-c-table__expandable-row--after--BorderColor`
+* `--pf-c-table__compound-expansion-toggle__button--before--BorderWidth` has changed to `--pf-c-table__compound-expansion-toggle__button--before--border-width--base`
+* `--pf-c-table__compound-expansion-toggle__button--after--BorderWidth` has changed to `--pf-c-table__compound-expansion-toggle__button--after--border-width--base`
+* `--pf-c-table-cell-th--responsive--PaddingTop` has changed to `--pf-c-table--cell--first-child--responsive--PaddingTop`
+
+## fix(page): move masthead selected button mod to header-tools-item [(#3109)](https://github.com/patternfly/patternfly/pull/3109)
+This PR moves the `.pf-m-selected` class in the masthead toolbar from the `.pf-c-button` component to the `.pf-c-page__header-tools-item` element. Any instance of `.pf-m-selected` on a `.pf-c-button` in the masthead should be moved to its containing `.pf-c-page__header-tools-item` element.
+
+## Fix tab focus 2 [(#3095)](https://github.com/patternfly/patternfly/pull/3095)
+This PR updates tab `:focus` and `:active` states to reflect hover state. It also resizes the tab `::after` pseudo element to not consume the entirety of the button. 
+
+The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
+* `--pf-c-tabs--before--BorderStyle`
+* `--pf-c-tabs__link--before--BorderStyle`
+* `--pf-c-tabs__link--after--BorderStyle`
+* `--pf-c-tabs__scroll-button--BorderStyle`
+* `--pf-c-tabs__link--child--MarginRight`
+* `--pf-c-tabs--m-vertical--m-box__link--after--Top`
+
+The following variables have been renamed. Any reference to the old variable should be updated to reference the new variable.
+* `--pf-c-tabs--Inset` changed to `--pf-c-tabs--inset`
+* `--pf-c-tabs--before--BorderWidth` changed to `--pf-c-tabs--before--border-width--base`
+* `--pf-c-tabs--m-vertical--Inset` changed to `--pf-c-tabs--m-vertical--inset`
+* `--pf-c-tabs--m-vertical--m-box--Inset` changed to `--pf-c-tabs--m-vertical--m-box--inset`
+* `--pf-c-tabs__item--m-current__link--Background` changed to `--pf-c-tabs__item--m-current__link--BackgroundColor`
+* `--pf-c-tabs__link--before--BorderColor` changed to `--pf-c-tabs__link--before--border-color--base`
+* `--pf-c-tabs__link--before--BorderWidth` changed to `--pf-c-tabs__link--before--border-width--base`
+* `--pf-c-tabs__scroll-button--Transition` was removed and users can control the individual transform durations via `--pf-c-tabs__scroll-button--TransitionDuration--margin`, `--pf-c-tabs__scroll-button--TransitionDuration--transform`, and `--pf-c-tabs__scroll-button--TransitionDuration--opacity`
+* `--pf-c-tabs__scroll-button--before--BorderWidth` changed to `--pf-c-tabs__scroll-button--before--border-width--base`
+
 ## fix(emptystate): split single padding var to top/right/bottom/left [(#3092)](https://github.com/patternfly/patternfly/pull/3092)
 This PR removes `--pf-c-empty-state--Padding`. Any reference to that variable should be removed as it is no longer used.
 
@@ -36,15 +84,36 @@ The following variables have been removed. Any reference to them should be remov
 * `--pf-c-table--thead--cell--Width`
 
 ## fix(datalist): fix shadows on selected rows [(#3068)](https://github.com/patternfly/patternfly/pull/3068)
-TBD
+This variable refactors and cleans up the component CSS so that the correct stacking context is applied to data list rows and shadows appear around the rows properly when rows are selected.
+
+The following variables have been renamed. Any reference to the old variable should be updated to reference the new variable instead.
+
+`--pf-c-data-list__item--item--BorderBottomColor` changed to `--pf-c-data-list__item--BorderBottomColor`
+`--pf-c-data-list__item--item--BorderBottomWidth` changed to `--pf-c-data-list__item--BorderBottomWidth`
+`--pf-c-data-list__item--m-selectable--hover__item--BorderTopColor` changed to `--pf-c-data-list__item--m-selectable--hover--item--BorderTopColor`
+`--pf-c-data-list__item--m-selectable--hover__item--BorderTopWidth` changed to `--pf-c-data-list__item--m-selectable--hover--item--BorderTopWidth`
+`--pf-c-data-list__item--item--sm--BorderBottomWidth` changed to `--pf-c-data-list__item--sm--BorderBottomWidth`
+`--pf-c-data-list__item--item--sm--BorderBottomColor` changed to `--pf-c-data-list__item--sm--BorderBottomColor`
+`--pf-c-data-list__item--item--before--Top` changed to `--pf-c-data-list__item--before--sm--Top`
+
+The following variables were removed. All instances of these variables should be removed as they're no longer used.
+
+`--pf-c-data-list__expandable-content--BorderRightWidth`
+`--pf-c-data-list__expandable-content--BorderBottomWidth`
+`--pf-c-data-list__expandable-content--BorderLeftWidth`
+`--pf-c-data-list__expandable-content--BorderRightColor`
+`--pf-c-data-list__expandable-content--BorderBottomColor`
+`--pf-c-data-list__expandable-content--BorderLeftColor`
 
 ## fix(page): removed unnecessary vars [(#3066)](https://github.com/patternfly/patternfly/pull/3066)
 The CSS var `--pf-c-page__header-sidebar-toggle__c-button--xl--MarginLeft` was removed. All instances of this should be removed as it is no longer used in patternfly.
 
 ## refactor(nav-structure): removed __simple-list, added support for -m-horizontal/-m-tertiary at root [(#3062)](https://github.com/patternfly/patternfly/pull/3062)
-This PR allows for navigation to be modified at the component root with `.pf-m-horizontal`, `.pf-m-tertiary` and `.pf-m-light` (vertical orientation only). The list component is now styled contextually by `.pf-c-nav__section`, `.pf-c-nav__subnav`, `.pf-c-nav__horizontal`, `.pf-c-nav__tertiary`. 
+This PR allows for navigation to be modified at the component root with `.pf-m-horizontal`, `.pf-m-tertiary` and `.pf-m-light` (vertical orientation only). The nav list element is now styled contextually by `.pf-c-nav__section`, `.pf-c-nav__subnav`, `.pf-c-nav__horizontal`, `.pf-c-nav__tertiary`. 
 
 `.pf-c-nav__simple-list`, `.pf-c-nav__horizontal-list` and `.pf-c-nav__tertiary-list` have been replaced by `.pf-c-nav__list`.
+
+As result, the variables associated with these lists have changed. For example `--pf-c-nav__horizontal-list__link--Color` has changed to `--pf-c-nav--m-horizontal__link--Color`. `--pf-c-nav__tertiary-list__link--Color` has changed to `--pf-c-nav--m-tertiary__link--Color`. The list of changes is too long to list here, so please reference the [file changeset](https://github.com/patternfly/patternfly/pull/3062/files) for a full list of the changes.
 
 The following classes have been removed. Any reference to them should be removed as they are no longer used in patternfly:
 * `.pf-c-nav__simple-list`
@@ -56,7 +125,7 @@ The following variables have been renamed. Any reference to the old variable sho
 * `--pf-c-nav__tertiary-list__link` has changed to `--pf-c-nav--m-tertiary__link` in all instances
 * `--pf-c-nav--subnav__simple-list` has changed to `--pf-c-nav__subnav__link` in all instances
 
-Some of the general CSS structure has also changed, so please reference the [file changeset](https://github.com/patternfly/patternfly/pull/3062/files).
+Some of the general CSS structure has also changed, so please reference the [file changeset](https://github.com/patternfly/patternfly/pull/3062/files) for a full list of the changes.
 
 ## fix(chip-group): refactored structure so chip-group no longer nests [(#3058)](https://github.com/patternfly/patternfly/pull/3058)
 This PR introduces breaking structural changes to the chip and chip group components.
@@ -118,7 +187,7 @@ This PR makes a number of changes to the pagination component.
 
 This PR updates the visuals of the control button disabled state.
 
-* The following variables were removed. All references to them should be removed as they are no longer used in patternfly.
+The following variables were removed. All references to them should be removed as they are no longer used in patternfly.
   * `--pf-c-button--m-control--disabled--after--BorderTopColor`
   * `--pf-c-button--m-control--disabled--after--BorderRightColor`
   * `--pf-c-button--m-control--disabled--after--BorderBottomColor`
@@ -126,8 +195,17 @@ This PR updates the visuals of the control button disabled state.
 
 #### Form Control
 
-* `--pf-c-form-control--readonly--focus--BackgroundColor` was renamed to `--pf-c-form-control--readonly--BackgroundColor`. All references to the old variable name should be updated to reference the new variable name instead.
-* `--pf-c-form-control--readonly--focus--PaddingBottom` was removed. Any reference to it should be removed as it is no longer used in patternfly.
+`--pf-c-form-control--readonly--focus--BackgroundColor` was renamed to `--pf-c-form-control--readonly--BackgroundColor`. All references to the old variable name should be updated to reference the new variable name instead.
+
+#### File Upload
+The following variables were removed. All references to them should be removed as they are no longer used in patternfly.
+
+* `--pf-c-file-upload__file-select__c-button--m-control--disabled--BackgroundColor`
+* `--pf-c-file-upload__file-select__c-button--m-control--disabled--after--BorderTopColor`
+* `--pf-c-file-upload__file-select__c-button--m-control--disabled--after--BorderRightColor`
+* `--pf-c-file-upload__file-select__c-button--m-control--disabled--after--BorderBottomColor`
+* `--pf-c-file-upload__file-select__c-button--m-control--disabled--after--BorderLeftColor`
+* `--pf-c-file-upload__file-select__c-button--m-control--disabled--after--BorderWidth`
 
 ## fix(pagination): removed options menu per page text styling [(#3047)](https://github.com/patternfly/patternfly/pull/3047)
 This PR removes the `.pf-c-pagination__menu-text` element from the pagination options menu items. The options menu item text should just be normal text.
@@ -146,10 +224,50 @@ This PR removes the `.pf-c-toolbar` component. This component is being replaced 
 All use of the `.pf-c-toolbar` component - classes, variables, etc should be removed as the component is removed from PatternFly.
 
 ## fix(components): add pf-m-active to toggles [(#3038)](https://github.com/patternfly/patternfly/pull/3038)
-TBD
+There are no breaking changes in this PR. The PR focuses on adding `pf-m-active` back to some of the components (which were removed in #2975) for accessibility reasons.
 
 ## fix(components): split out transform variables [(#3037)](https://github.com/patternfly/patternfly/pull/3037)
-TBD
+This PR splits out transform variables by the different properties that are being transformed. The aim is to make the code easier to customize when overwriting transform properties, and also to support a future browser feature that will allow us to define the individual transform functions as properties instead of values in a transform declaration.
+
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+
+- `--pf-c-accordion__toggle--m-expanded__toggle-icon--Transform` renamed to `--pf-c-accordion__toggle--m-expanded__toggle-icon--Rotate` 
+- `--pf-c-alert__action--Transform` renamed to `--pf-c-alert__action--TranslateY`
+- `--pf-c-app-launcher--m-top__menu--Transform` renamed to `--pf-c-app-launcher--m-top__menu--TranslateY`
+- `--pf-c-app-launcher__menu-item-external-icon--Transform` renamed to `--pf-c-app-launcher__menu-item-external-icon--TranslateY`
+- `--pf-c-clipboard-copy--m-expanded__toggle-icon--Transform` renamed to `--pf-c-clipboard-copy--m-expanded__toggle-icon--Rotate`
+- `--pf-c-data-list__item--m-expanded__toggle-icon--Transform` renamed to `--pf-c-data-list__item--m-expanded__toggle-icon--Rotate`
+- `--pf-c-dropdown__toggle--m-split-button__toggle-check__input--Transform` renamed to `--pf-c-dropdown__toggle--m-split-button__toggle-check__input--TranslateY`
+- `--pf-c-dropdown--m-top--m-expanded__toggle-icon--Transform` renamed to `--pf-c-dropdown--m-top--m-expanded__toggle-icon--Rotate`
+- `--pf-c-dropdown--m-top__menu--Transform` renamed to `--pf-c-dropdown--m-top__menu--TranslateY`
+- `--pf-c-expandable-section--m-expanded__toggle-icon--Transform` renamed to `--pf-c-expandable-section--m-expanded__toggle-icon--Rotate`
+- `--pf-c-nav__item--m-expanded__toggle-icon--Transform` renamed to `--pf-c-nav__item--m-expanded__toggle-icon--Rotate`
+- `--pf-c-notification-drawer__group--m-expanded__group-toggle-icon--Transform` renamed to `--pf-c-notification-drawer__group--m-expanded__group-toggle-icon--Rotate`
+- `--pf-c-options-menu--m-top--m-expanded__toggle-icon--Transform` renamed to `--pf-c-options-menu--m-top--m-expanded__toggle-icon--Rotate`
+- `--pf-c-options-menu--m-top__menu--Transform` renamed to `--pf-c-options-menu--m-top__menu--TranslateY`
+- `--pf-c-page__sidebar--Transform` renamed to two variables: `--pf-c-page__sidebar--TranslateX`and `--pf-c-page__sidebar--TranslateZ`
+- `--pf-c-page__sidebar--m-expanded--Transform` renamed to `--pf-c-page__sidebar--m-expanded--TranslateX`
+- `--pf-c-page__sidebar--xl--Transform` renamed to `--pf-c-page__sidebar--xl--TranslateX`
+- `--pf-c-popover__arrow--m-top--Transform` renamed to three variables `--pf-c-popover__arrow--m-top--TranslateX` and `--pf-c-popover__arrow--m-top--TranslateY` and `--pf-c-popover__arrow--m-top--Rotate`
+- `--pf-c-popover__arrow--m-right--Transform` renamed to three variables: `--pf-c-popover__arrow--m-right--TranslateX` and `--pf-c-popover__arrow--m-right--TranslateY` and `--pf-c-popover__arrow--m-right--Rotate`
+- `--pf-c-popover__arrow--m-bottom--Transform` renamed to three variables: `--pf-c-popover__arrow--m-bottom--TranslateX` and `--pf-c-popover__arrow--m-bottom--TranslateY` and `--pf-c-popover__arrow--m-bottom--Rotate`
+- `--pf-c-popover__arrow--m-left--Transform` renamed to three variables: `--pf-c-popover__arrow--m-left--TranslateX` and `--pf-c-popover__arrow--m-left--TranslateY` and `--pf-c-popover__arrow--m-left--Rotate`
+- `--pf-c-select__toggle-arrow--m-top--m-expanded__toggle-arrow--Transform` renamed to `--pf-c-select__toggle-arrow--m-top--m-expanded__toggle-arrow--Rotate`
+- `--pf-c-select__menu--m-top--Transform` renamed to `--pf-c-select__menu--m-top--TranslateY`
+- `--pf-c-select__menu-item-icon--Transform` renamed to `--pf-c-select__menu-item-icon--TranslateY`
+- `--pf-c-switch__input--checked__toggle--before--Transform` renamed to `--pf-c-switch__input--checked__toggle--before--TranslateX`
+- `--pf-c-table__toggle--m-expanded__icon--Transform` renamed to `--pf-c-table__toggle--m-expanded__icon--Rotate`
+- `--pf-c-table__toggle--c-button__toggle-icon--Transform` renamed to `--pf-c-table__toggle--c-button__toggle-icon--Rotate`
+- `--pf-c-table__toggle--c-button--m-expanded__toggle-icon--Transform` renamed to `--pf-c-table__toggle--c-button--m-expanded__toggle-icon--Rotate`
+- `--pf-c-tooltip__arrow--m-top--Transform` renamed to three variables:  `--pf-c-tooltip__arrow--m-top--TranslateX` and `--pf-c-tooltip__arrow--m-top--TranslateY` and `--pf-c-tooltip__arrow--m-top--Rotate`
+- `--pf-c-tooltip__arrow--m-right--Transform` renamed to three variables: `--pf-c-tooltip__arrow--m-right--TranslateX` and `--pf-c-tooltip__arrow--m-right--TranslateY` and `--pf-c-tooltip__arrow--m-right--Rotate`
+- `--pf-c-tooltip__arrow--m-bottom--Transform` renamed to three variables: `--pf-c-tooltip__arrow--m-bottom--TranslateX` and `--pf-c-tooltip__arrow--m-bottom--TranslateY` and `--pf-c-tooltip__arrow--m-bottom--Rotate`
+- `--pf-c-tooltip__arrow--m-left--Transform` renamed to three variables: `--pf-c-tooltip__arrow--m-left--TranslateX` and `--pf-c-tooltip__arrow--m-left--TranslateY` and `--pf-c-tooltip__arrow--m-left--Rotate`
+- `--pf-c-wizard__nav-link--before--Transform` renamed to `--pf-c-wizard__nav-link--before--TranslateX`
+- `--pf-c-wizard__toggle--m-expanded__toggle-icon--Transform` renamed to `--pf-c-wizard__toggle--m-expanded__toggle-icon--Rotate`
+
+The following variables were removed. Any reference to them should be removed as they are no longer used in PatternFly.
+- `--pf-c-nav__item--m-expanded__toggle--Transform`
 
 ## fix(card): moved __header to __title, __head to __header [(#3035)](https://github.com/patternfly/patternfly/pull/3035)
 This PR renames the `.pf-c-card__header` element to `.pf-c-card__title`, and removes the dependency of `.pf-c-title` from `.pf-c-card__title`. And that allows us to rename `.pf-c-card__head` to `.pf-c-card__header`.
@@ -169,37 +287,127 @@ The following variables were renamed. Any reference to the old variable name sho
 * `--pf-c-card__header--not--last-child--PaddingBottom` was renamed to `--pf-c-card__title--not--last-child--PaddingBottom`
 
 ## fix(button): clean up vars [(#3028)](https://github.com/patternfly/patternfly/pull/3028)
-TBD
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+
+- `--pf-c-button--BorderColor` renamed to `--pf-c-button--after--BorderColor`
+- `--pf-c-button--BorderWidth` renamed to `--pf-c-button--after--BorderWidth`
+- `--pf-c-button--hover--BorderWidth` renamed to `--pf-c-button--hover--after--BorderWidth`
+- ` --pf-c-button--focus--BorderWidth` renamed to `--pf-c-button--focus--after--BorderWidth`
+- `--pf-c-button--active--BorderWidth` renamed to `--pf-c-button--active--after--BorderWidth`
+- `--pf-c-button--disabled--BorderColor` renamed to `--pf-c-button--disabled--after--BorderColor`
+- `--pf-c-button--m-secondary--BorderColor` renamed to `--pf-c-button--m-secondary--after--BorderColor`
+- `--pf-c-button--m-secondary--hover--BorderColor` renamed to `--pf-c-button--m-secondary--hover--after--BorderColor`
+- `--pf-c-button--m-secondary--focus--BorderColor` renamed to `--pf-c-button--m-secondary--focus--after--BorderColor`
+- `--pf-c-button--m-secondary--active--BorderColor` renamed to `--pf-c-button--m-secondary--active--after--BorderColor`
+- `--pf-c-button--m-tertiary--BorderColor` renamed to `--pf-c-button--m-tertiary--after--BorderColor`
+- `--pf-c-button--m-tertiary--hover--BorderColor` renamed to `--pf-c-button--m-tertiary--hover--after--BorderColor`
+- `--pf-c-button--m-tertiary--focus--BorderColor` renamed to `--pf-c-button--m-tertiary--focus--after--BorderColor`
+- `--pf-c-button--m-tertiary--active--BorderColor` renamed to `--pf-c-button--m-tertiary--active--after--BorderColor`
 
 ## fix(switch): clean up vars [(#3026)](https://github.com/patternfly/patternfly/pull/3026)
-TBD
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+
+- Renames `--pf-c-switch--Width` to `--pf-c-switch__toggle--Width`
+
+The following variables were removed. Any reference to them should be removed as they are no longer used in patternfly.
+
+- Removes `--pf-c-switch__toggle-icon--PaddingLeft`
+- Removes `--pf-c-switch__toggle-icon--Top`
+- Removes `--pf-c-switch__toggle-icon--Transform`
+- Removes `--pf-c-switch__label--FontSize`
+- Removes `--pf-c-switch__label--FontWeight`
+- Removes `--pf-c-switch__label--LineHeight`
 
 ## fix(datalist): clean up vars [(#3025)](https://github.com/patternfly/patternfly/pull/3025)
-TBD
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
 
-@mcoker do you know what causes `pf-c-data-list__item .pf-m-selectable` to show the border-bottom? I see it on master, but I don't see it on v4 , do you know if it was removed purposely?
+- `--pf-c-data-list__item-item--BorderTopColor` renamed to `--pf-c-data-list__item--item--BorderBottomColor`
+- `--pf-c-data-list__item-item--BorderTopWidth` renamed to `--pf-c-data-list__item--item--BorderBottomWidth`
+- `--pf-c-data-list__item--hover--item--BorderTopColor` renamed to `--pf-c-data-list__item--m-selectable--hover__item--BorderTopColor`
+- `--pf-c-data-list__item--hover--item--BorderTopWidth` renamed to `--pf-c-data-list__item--m-selectable--hover__item--BorderTopWidth`
+- `--pf-c-data-list__item-item--sm--BorderTopWidth` renamed to `--pf-c-data-list__item--item--sm--BorderBottomWidth`
+- `--pf-c-data-list__item-item--sm--BorderTopColor` renamed to `--pf-c-data-list__item--item--sm--BorderBottomColor`
+- `--pf-c-data-list__item-item--before--Top` renamed to `--pf-c-data-list__item--item--before--Top`
+- `--pf-c-data-list__cell-cell--PaddingTop` renamed to `--pf-c-data-list__cell--cell--PaddingTop`
+- `--pf-c-data-list__cell-cell--md--PaddingTop` renamed to `--pf-c-data-list__cell--cell--md--PaddingTop`
+- `--pf-c-data-list__cell-cell--MarginRight` renamed to `--pf-c-data-list__cell--MarginRight`
+- `--pf-c-data-list__item--m-expanded__toggle--c-button-icon--Transform` renamed to `--pf-c-data-list__item--m-expanded__toggle-icon--Transform`
+- `--pf-c-data-list--m-compact__cell-cell--MarginRight` renamed to `--pf-c-data-list--m-compact__cell--cell--MarginRight`
 
-v4:
-<img width="963" alt="Screen Shot 2020-04-27 at 11 21 24 AM" src="https://user-images.githubusercontent.com/20118816/80389610-464b9400-8879-11ea-9c2d-0cafe8f9e0c9.png">
-
-master:
-<img width="1147" alt="Screen Shot 2020-04-27 at 11 21 19 AM" src="https://user-images.githubusercontent.com/20118816/80389604-451a6700-8879-11ea-88c7-5348312f7435.png">
+The following variables were removed. Any reference to them should be removed as they are no longer used in patternfly.
+-  `--pf-c-data-list--BackgroundColor`
+- `--pf-c-data-list--BorderBottomColor`
+- `--pf-c-data-list--BorderBottomWidth`
 
 ## fix(dropdown): cleanup vars [(#3020)](https://github.com/patternfly/patternfly/pull/3020)
-TBD
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+- `--pf-c-dropdown__toggle--BorderWidth` renamed to `--pf-c-dropdown__toggle--before--BorderWidth`
+- `--pf-c-dropdown__toggle--BorderTopColor` renamed to `--pf-c-dropdown__toggle--before--BorderTopColor`
+- `--pf-c-dropdown__toggle--BorderRightColor` renamed to `--pf-c-dropdown__toggle--before--BorderRightColor`
+- `--pf-c-dropdown__toggle--BorderBottomColor` renamed to `--pf-c-dropdown__toggle--before--BorderBottomColor`
+- `--pf-c-dropdown__toggle--BorderLeftColor` renamed to `--pf-c-dropdown__toggle--before--BorderLeftColor`
+- `--pf-c-dropdown__toggle--hover--BorderBottomColor` renamed to `--pf-c-dropdown__toggle--hover--before--BorderBottomColor`
+- `--pf-c-dropdown__toggle--active--BorderBottomWidth` renamed to `--pf-c-dropdown__toggle--active--before--BorderBottomWidth`
+- `--pf-c-dropdown__toggle--active--BorderBottomColor` renamed to `--pf-c-dropdown__toggle--active--before--BorderBottomColor`
+- `--pf-c-dropdown__toggle--focus--BorderBottomWidth` renamed to `--pf-c-dropdown__toggle--focus--before--BorderBottomWidth`
+- `--pf-c-dropdown__toggle--focus--BorderBottomColor` renamed to `--pf-c-dropdown__toggle--focus--before--BorderBottomColor`
+- `--pf-c-dropdown__toggle--expanded--BorderBottomWidth` renamed to `--pf-c-dropdown--m-expanded__toggle--before--BorderBottomWidth`
+- `--pf-c-dropdown__toggle--expanded--BorderBottomColor` renamed to `--pf-c-dropdown--m-expanded__toggle--before--BorderBottomColor`
+
+The following variables were removed. Any reference to them should be removed as they are no longer used in patternfly.
+
+- `--pf-c-dropdown__toggle--m-plain--BorderColor`
+- `--pf-c-dropdown__group--PaddingTop`
+- `--pf-c-dropdown__group--first-child--PaddingTop`
 
 ## fix(select): cleanup vars [(#3019)](https://github.com/patternfly/patternfly/pull/3019)
-Will fill in this section once the PR is reviewed.
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+- `--pf-c-select__toggle--BorderWidth` renamed to `--pf-c-select__toggle--before--BorderWidth`
+- `--pf-c-select__toggle--BorderTopColor` renamed to `--pf-c-select__toggle--before--BorderTopColor`
+- `--pf-c-select__toggle--BorderRightColor` renamed to `--pf-c-select__toggle--before--BorderRightColor`
+-  `--pf-c-select__toggle--BorderBottomColor` renamed to `--pf-c-select__toggle--before--BorderBottomColor`
+- `--pf-c-select__toggle--BorderLeftColor` renamed to `--pf-c-select__toggle--before--BorderLeftColor`
+- `--pf-c-select__toggle--hover--BorderBottomColor` renamed to `--pf-c-select__toggle--hover--before--BorderBottomColor`
+- `--pf-c-select__toggle--active--BorderBottomColor` renamed to `--pf-c-select__toggle--active--before--BorderBottomColor`
+- `--pf-c-select__toggle--expanded--BorderBottomColor` renamed to `--pf-c-select__toggle--m-expanded--before--BorderBottomColor`
+- `--pf-c-select__toggle--active--BorderBottomWidth` renamed to `--pf-c-select__toggle--active--before--BorderBottomWidth`
+- `--pf-c-select__toggle--expanded--BorderBottomWidth` renamed to `--pf-c-select__toggle--m-expanded--before--BorderBottomWidth`
+- `--pf-c-select__toggle-typeahead-form--MinWidth` renamed to `--pf-c-select__toggle-typeahead--MinWidth`
+- `--pf-c-select__toggle-typeahead--active--PaddingBottom` renamed to `--pf-c-select__toggle-typeahead--focus--PaddingBottom`
+- `--pf-c-select__toggle-button--PaddingLeft` renamed to `--pf-c-select__toggle-clear--toggle-button--PaddingLeft`
+
+The following variables were removed. Any reference to them should be removed as they are no longer used in patternfly.
+- Removes `--pf-c-select__toggle--m-plain--BorderColor`
+- Removes `--pf-c-select__toggle--m-plain--Color`
+- Removes `--pf-c-select__toggle--m-plain--hover--Color`
+- Removes `--pf-c-select__toggle-wrapper--m-typeahead--PaddingTop
 
 ## fix(optionsmenu): clean up vars [(#3018)](https://github.com/patternfly/patternfly/pull/3018)
-* Renames the following variables:
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
 
 * `--pf-c-options-menu__toggle--Background` to `--pf-c-options-menu__toggle--BackgroundColor`
 * `--pf-c-options-menu__toggle-button--Background` to `--pf-c-options-menu__toggle-button--BackgroundColor`
 * `--pf-c-options-menu__menu-item--Background` to `--pf-c-options-menu__menu-item--BackgroundColor`
 
 ## fix(accordion): clean up vars [(#3016)](https://github.com/patternfly/patternfly/pull/3016)
-Will add to this once PR is reviewed
+The following variables were renamed. Any reference to the old name should be updated to reference the new name.
+- `--pf-c-accordion__toggle--BorderLeftColor` renamed to `--pf-c-accordion__toggle--before--BackgroundColor`
+- `--pf-c-accordion__toggle--m-expanded--BorderWidth` renamed to `--pf-c-accordion__toggle--before--Width`
+- `--pf-c-accordion__toggle--m-expanded--BorderLeftColor` renamed to `--pf-c-accordion__toggle--m-expanded--before--BackgroundColor`
+- `--pf-c-accordion__toggle-text--hover--Color` renamed to `--pf-c-accordion__toggle--hover__toggle-text--Color`
+- `--pf-c-accordion__toggle-text--active--Color` renamed to `--pf-c-accordion__toggle--active__toggle-text--Color`
+- `--pf-c-accordion__toggle-text--active--FontWeight` renamed to `--pf-c-accordion__toggle--active__toggle-text--FontWeight`
+- `--pf-c-accordion__toggle-text--focus--Color` renamed to `--pf-c-accordion__toggle--focus__toggle-text--Color`
+- `--pf-c-accordion__toggle-text--focus--FontWeight` renamed to `--pf-c-accordion__toggle--focus__toggle-text--FontWeight`
+- `--pf-c-accordion__toggle-text--expanded--Color` renamed to `--pf-c-accordion__toggle--m-expanded__toggle-text--Color`
+- `--pf-c-accordion__toggle-text--expanded--FontWeight` renamed to `--pf-c-accordion__toggle--m-expanded__toggle-text--FontWeight`
+- `--pf-c-accordion__expanded-content--BorderLeftColor` renamed to `--pf-c-accordion__expanded-content-body--before--BackgroundColor`
+- `--pf-c-accordion__expanded-content--m-expanded--BorderWidth` renamed to `--pf-c-accordion__expanded-content-body--before--Width`
+- `--pf-c-accordion__expanded-content--m-expanded--BorderLeftColor` renamed to `--pf-c-accordion__expanded-content--m-expanded__expanded-content-body--before--BackgroundColor`
+
+The following variables were removed. Any reference to them should be removed as they are no longer used in patternfly.
+-  Removes `--pf-c-accordion__toggle-text--hover--FontWeight`
+- Removes `--pf-c-accordion__toggle-icon--LineHeight`
 
 ## fix(vars): remove golden ratio var [(#3014)](https://github.com/patternfly/patternfly/pull/3014)
 * Removes `--pf-global--golden-ratio` and `$pf-global--golden-ratio` all instances of the variable should be removed in your application.
@@ -224,13 +432,22 @@ Adds `display: flex; flex-direction: column;` to `.pf-c-nav__list`. This is a CS
 
 ## refactor(nav-and-sidebar-theme): updated nav to dark theme [(#2978)](https://github.com/patternfly/patternfly/pull/2978)
 This PR updates the default theme for navigation and all variants as well as sidebar from light to dark.
-* Adds `pf-m-horizontal` for horizontal layout
+* Adds `.pf-m-horizontal` as a modifier to `.pf-c-nav` for horizontal nav variations. For the horizontal masthead and horizontal tertiary nav variations, the `.pf-c-nav` component now needs the `.pf-m-horizontal` modifier class.
+* Removes the `.pf-m-dark` selector and `--m-dark` in the CSS variable names and introduces `.pf-m-light` with `--m-light` in the variable names.
+  * For a full list of the variable name changes, reference [the PR changeset](https://github.com/patternfly/patternfly/pull/2978/files)
 
 The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
-* `--pf-c-nav__scroll-button--disabled--Color`
-* `--pf-c-nav__scroll-button--before--BorderColor`
-* `--pf-c-nav__scroll-button--disabled--before--BorderColor`
-* All `--pf-c-nav--m-dark`
+* `--pf-c-nav__horizontal-list__link--FontWeight`
+* `--pf-c-nav__tertiary-list__link--FontWeight`
+* `--pf-c-nav__tertiary-list__scroll-button--before--BorderColor`
+* `--pf-c-nav__tertiary-list__scroll-button--disabled--before--BorderColor`
+* `--pf-c-nav__toggle-icon--Transform`
+* `--pf-c-nav__scroll-button--lg--Height`
+* `pf-c-nav__scroll-button--Height`
+* `--pf-c-nav__horizontal-list__link--lg--PaddingBottom`
+* `--pf-c-nav__horizontal-list__link--lg--PaddingTop`
+
+`--pf-c-nav__toggle--Transition` changed to `--pf-c-nav__toggle-icon--Transition`. Any reference to `--pf-c-nav__toggle--Transition` should be updated to reference `--pf-c-nav__toggle-icon--Transition` instead.
 
 ## fix(components): remove hover active focus and disabled from workspace [(#2975)](https://github.com/patternfly/patternfly/pull/2975)
 - Removes the class `pf-m-hover` from the About Modal Box component's close button. All instances of it should be removed. The `:hover` selector still has styles applied to it.
@@ -299,10 +516,79 @@ This PR fixes multiple table issues.
 
 The following variables have been renamed. Any reference to the old variable should be updated to use the new variable:
 * All instances of `--pf-c-table-cell--` has changed to `--pf-c-table--cell--`
+* All instances of `--pf-c-table--m-compact-cell--` has changed to `--pf-c-table--m-compact--cell--`
+* `--pf-c-table__expandable-row--before--BackgroundColor` changed to `--pf-c-table__expandable-row--before--BorderColor`
+* `--pf-c-table__expandable-row--before--Width` changed to `--pf-c-table__expandable-row--before--BorderWidth`
+* `--pf-c-table__sort-indicator--hover--Color` changed to `--pf-c-table__sort__button--hover__sort-indicator--Color`
+
+The following variables have been removed. All instances should be removed as they're no longer used in patternfly.
+`--pf-c-table__expandable-row--before--ZIndex`
+`--pf-c-table-cell--FontWeight`
+`--pf-c-table__sort--c-button--Color`
+`--pf-c-table__sort-indicator--LineHeight`
+* `--pf-c-table__compound-expansion-toggle--BorderTop--BorderWidth`
+* `--pf-c-table__compound-expansion-toggle--BorderTop--BorderColor`
+* `--pf-c-table__compound-expansion-toggle--BorderRight--BorderWidth`
+* `--pf-c-table__compound-expansion-toggle--BorderLeft--BorderWidth`
+* `--pf-c-table__compound-expansion-toggle--BorderRight--BorderColor`
+* `--pf-c-table__compound-expansion-toggle--BorderLeft--BorderColor`
+* `--pf-c-table__compound-expansion-toggle--BorderBottom--BorderWidth`
+* `--pf-c-table__compound-expansion-toggle--BorderBottom--BorderColor`
+* `--pf-c-table__sort--sorted--Color`
 
 `.pf-m-height-auto` is no longer necessary, so the modifier class was removed. All instances of it should be removed.
 
 Some of the general CSS structure has also changed, so please reference the [file changeset](https://github.com/patternfly/patternfly/pull/2965/files).
+
+## fix(wizard): reworked wizard so it can be used in modal [(#2964)](https://github.com/patternfly/patternfly/pull/2964)
+This PR removes the "modal" functionality/layout from the wizard and makes it a normal container that fills the space of the element it is placed inside of. Another way of looking at it is that we took the `.pf-m-in-page` variation, and made that the default and only presentation of the modal. One unique feature of the wizard compared to other components is that it will also attempt to fill the height of its parent container via `height: 100%`. And when placed inside of the modal component, the wizard takes on the height of `762px`, which is the same as the height of the wizard modal prior to this change.
+
+When using the wizard in a modal, simply omit all of the element children of the modal component, and place the `.pf-c-wizard` component as the direct and only child of `.pf-c-modal-box`.
+
+The following modifiers have been removed. Any reference to these modifiers is no longer necessary and should be removed as they are no longer in patternfly.
+* `.pf-m-full-width`
+* `.pf-m-full-height`
+* `.pf-m-in-page`
+
+The following variables have been removed. Any instance of them should be removed as they are no longer used in patternfly.
+* `--pf-c-wizard--BoxShadow`
+* `--pf-c-wizard--Width`
+* `--pf-c-wizard--lg--Width`
+* `--pf-c-wizard--lg--MaxWidth`
+* `--pf-c-wizard--lg--Height`
+* `--pf-c-wizard--lg--MaxHeight`
+* `--pf-c-wizard--m-full-width--lg--MaxWidth`
+* `--pf-c-wizard--m-full-height--lg--Height`
+* `--pf-c-wizard--m-in-page--BoxShadow`
+* `--pf-c-wizard--m-in-page--Height`
+* `--pf-c-wizard--m-in-page--Width`
+* `--pf-c-wizard--m-in-page--lg--MaxWidth`
+* `--pf-c-wizard--m-in-page--lg--MaxHeight`
+* `--pf-c-wizard--m-in-page__nav-list--md--PaddingLeft`
+* `--pf-c-wizard--m-in-page__nav-list--xl--PaddingLeft`
+* `--pf-c-wizard--m-in-page__main-body--md--PaddingTop`
+* `--pf-c-wizard--m-in-page__main-body--md--PaddingRight`
+* `--pf-c-wizard--m-in-page__main-body--md--PaddingBottom`
+* `--pf-c-wizard--m-in-page__main-body--md--PaddingLeft`
+* `--pf-c-wizard--m-in-page__main-body--xl--PaddingRight`
+* `--pf-c-wizard--m-in-page__main-body--xl--PaddingLeft`
+* --pf-c-wizard--m-in-page__footer--md--PaddingTop`
+* `--pf-c-wizard--m-in-page__footer--md--PaddingRight`
+* `--pf-c-wizard--m-in-page__footer--md--PaddingBottom`
+* `--pf-c-wizard--m-in-page__footer--md--PaddingLeft`
+* `--pf-c-wizard--m-in-page__footer--xl--PaddingRight`
+* `--pf-c-wizard--m-in-page__footer--xl--PaddingLeft`
+
+The following variables have been renamed. Any reference to the old variable name should be updated to reference the new variable instead.
+* `--pf-c-wizard__close--lg--Right` renamed to `--pf-c-wizard__close--xl--Right`
+* `--pf-c-wizard__main-body--lg--PaddingTop` renamed to `--pf-c-wizard__main-body--xl--PaddingTop`
+* `--pf-c-wizard__main-body--lg--PaddingRight` renamed to `--pf-c-wizard__main-body--xl--PaddingRight`
+* `--pf-c-wizard__main-body--lg--PaddingBottom` renamed to `--pf-c-wizard__main-body--xl--PaddingBottom`
+* `--pf-c-wizard__main-body--lg--PaddingLeft` renamed to `--pf-c-wizard__main-body--xl--PaddingLeft`
+* `--pf-c-wizard__footer--lg--PaddingTop` renamed to `--pf-c-wizard__footer--xl--PaddingTop`
+* `--pf-c-wizard__footer--lg--PaddingRight` renamed to `--pf-c-wizard__footer--xl--PaddingRight`
+* `--pf-c-wizard__footer--lg--PaddingBottom` renamed to `--pf-c-wizard__footer--xl--PaddingBottom`
+* `--pf-c-wizard__footer--lg--PaddingLeft` renamed to `--pf-c-wizard__footer--xl--PaddingLeft`
 
 ## fix(components): removed transparent borders [(#2963)](https://github.com/patternfly/patternfly/pull/2963)
 This PR removes a transparent border from a handful of components that was used to serve as a border in Windows high contrast mode. We no longer support specific styling for high contrast mode.
@@ -458,6 +744,8 @@ This PR modifies the nav behavior to display inline with navigational elements r
 The following classes have been removed. Any reference to them should be removed as they are no longer used in patternfly:
 * `.pf-m-start`
 * `.pf-m-end`
+
+Instead of applying `.pf-m-start` and `.pf-m-end` when there is overflow on a particular end of the nav, if there is any overflow on any end, apply the class `.pf-m-scrollable` to `.pf-c-nav`.
 
 The following variables have been removed. Any reference to them should be removed as they are no longer used in patternfly:
 * `--pf-c-nav__scroll-button--Display`

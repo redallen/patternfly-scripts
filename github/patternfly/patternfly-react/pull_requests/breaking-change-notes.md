@@ -1,23 +1,101 @@
+## improvement(ChipGroup): Update ChipGroup to match new design [(#4246)](https://github.com/patternfly/patternfly-react/pull/4246)
+1. **ChipGroup** :
+- `withToolbar` prop has been removed.  Add the `categoryName` prop instead to add a chip group with a category.
+- `headingLevel` prop has been removed.  The category name has internally been switched to a `<span>`
+2. **ChipGroupToolbarItem**: This component has been removed.  To Create a ChipGroup with a category, add the `categoryName` prop to `<ChipGroup>`.  All props that were on the `<ChipGroupToolbarItem>` have been added to `<ChipGroup>`.  So to convert to new API, move move all you props up to <ChipGroup> and remove `<ChipGroupToolbarItem>`.
+3. **Chip**: The overflow chip no longer contains a button.  Th specify a overflow chip as a button do the following `<Chip component='button'  isOverflowChip>
+            Overflow Chip name
+          </Chip>`
+
+## fix(nav): bump core and update variants [(#4225)](https://github.com/patternfly/patternfly-react/pull/4225)
+- **Nav:** `variant` prop has been removed from `NavList`. Pass variant={`horizontal` | `tertiary`} to `Nav` instead.
+
+## replace Toolbar with PageHeaderTools in page header [(#4223)](https://github.com/patternfly/patternfly-react/pull/4223)
+**PageHeader**: `avatar` prop was removed. Add the avatar to the `PageHeaderTools` component instead (which is passed into `PageHeader` via the `headerTools` prop.
+**PageHeader**: `toolbar` prop was removed. Use the `headerTools` prop instead. Also, if you previously used the `Toolbar`, `ToolbarGroup`, or `ToolbarItem` components for the header, replace them with the `PageHeaderTools`, `PageHeaderToolsGroup`, and `PageHeaderToolsItem` components.
+
+## fix(pagination): update to match core [(#4202)](https://github.com/patternfly/patternfly-react/pull/4202)
+- **Pagination:** Remove obsolete 'left' and 'right' variants. These should be replaced with 'top' (default) or 'bottom'.
+
+## Breaking/alert [(#4190)](https://github.com/patternfly/patternfly-react/pull/4190)
+- **Alert**: If you were previously using the `action` prop for the close button, use the `actionClose` prop instead
+- **Alert**: If you were previously using the `action` prop for a link button, use the `actionLinks` prop instead
+
+## fix(experimental): remove experimental directory [(#4176)](https://github.com/patternfly/patternfly-react/pull/4176)
+1. **Drawer**: Removes import path `'@patternfly/react-core/dist/js/experimental'`. The import path `'@patternfly/react-core'` should be used instead.
+
+## chore(packages): bump core to 4.10.1 [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
+- **Card:**
+  - Rename CardHeader to CardTitle
+  - Rename CardHeadMain to CardHeaderMain
+  - Rename CardHead to CardHeader
+- **Table:**
+  - Remove `cellHeightAuto` transformer. It is no longer needed.
+  - `cellWidth('max')` has been replaced with `cellWidth(100)`
+
+## feat(Label): refactor for updated design and features [(#4165)](https://github.com/patternfly/patternfly-react/pull/4165)
+1. Default color changed to grey. Design also adjusted.
+
+## Chore/4112 dropdownitem icon [(#4147)](https://github.com/patternfly/patternfly-react/pull/4147)
+- **Dropdown:**
+  - Remove DropdownItemIcon in favor of <DropdownItem icon={<Icon />} />
+  - Remove variant prop from DropdownItem. If you were using variant="icon" before, use the new icon prop instead.
+
+## Tabs updates [(#4146)](https://github.com/patternfly/patternfly-react/pull/4146)
+**Tabs**:
+1. Changed prop `variant` for consistency.  You will need to update all instances of `variant` prop to `component` 
+2. Changed `TabVariant` enum Name to `TabComponent` for consistent naming.  You will now need to update all instances of `tabVariant` to `TabComponent`. 
+
+**Tab**: 
+1. The title should be wrapped with `<TabTitleText>` for proper styling.  If you would like to place an Icon in the Tab, it should be wrapped with `<TabTitleIcon>` for proper styling.
+
+## chore(packages): bump react peer dep to 16.8.0 [(#4144)](https://github.com/patternfly/patternfly-react/pull/4144)
+- Our packages now can possibly use hooks, which requires `react@^16.8.0` instead of `react@^16.4.0`. We recommend upgrading your version of React if it is below 16.8.0.
+
+## fix(wizard): remove old prop "isCompactNav" [(#4142)](https://github.com/patternfly/patternfly-react/pull/4142)
+1. **WizardNav**: Removes prop `isCompactNav `. This prop is no longer used.
+
+<!-- Are there any upstream issues or separate issues you need to reference? -->
+**Additional issues**: https://github.com/patternfly/patternfly/pull/2936
+
+## chore(Wizard): make wizard inPage [(#4140)](https://github.com/patternfly/patternfly-react/pull/4140)
+- Modal: Remove hideTitle prop. To hide the Modal header, do not pass a title prop, a description prop, or a header prop. If there is no title or header passed, please provide an aria-label prop to the Modal component to make it accessible.
+- Wizard: Remove inPage prop. By default the Wizard will be displayed in page, filling its parent container. If the consumer passes a managed isOpen flag, then the Wizard will be displayed in a modal.
+
+## feat(Wizard): update hasBodyPadding [(#4136)](https://github.com/patternfly/patternfly-react/pull/4136)
+- **Wizard:** Rename `hasBodyPadding` to `hasNoBodyPadding` for Wizard and WizardBody.
+
+<!-- What changes are being made? Please link the issue being addressed. -->
+- **What**: Closes #4052 -- moves padding to wizard body.
+
+<!-- Are there any upstream issues or separate issues you need to reference? -->
+- **Additional issues**: #4039, renamed prop to remain consistent with @kmcfaul's `hasNoPadding` changes in #4133.
+
+## feat(Drawer, DataList, Page): rename noPadding to hasNoPadding [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
+1. Renamed `noPadding` to `hasNoPadding` for Drawer, DataList and Page components.
+2. Added `hasPaddingOn` and `hasNoPaddingOn` properties to PageSection, accounting for page size breakpoints. Breakpoints are defined in the `PageSectionBreakpoints` enum.
+
+## fix(nav): fix scrolling [(#4129)](https://github.com/patternfly/patternfly-react/pull/4129)
+-  **Nav**: The tertiary variant of NavList must now be inside a `<PageSection type="nav">` to scroll properly.
+
 ## feat(react-core): bump core and fix build [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-**Button:** Remove isHover and isFocus props, all instances of them should be removed from your application.
-**Chip:** Remove isReadOnly prop, all instances of it should be removed from your application.
-**Dropdown:** Remove isHover and isFocus props from Toggle, KebabToggle, and DropdownToggle. All instances of them should be removed from your application.
-**Select:**
-- Remove isFocus prop from SelectOption, all instances of it should be removed from your application.
-- Remove isFocus and isHovered props from SelectToggle, all instances of them should be removed from your application.
-
-**Expandable:**
-- Rename component to ExpandableSection, all instances in your application should be renamed.
-- Remove isFocus and isHovered props from ExpandableSection, all instances of them should be removed from your application.
-
-**Label:** Remove isCompact prop from Label, all instances of it should be removed from your application.
-**Options menu:** Remove isFocused and isHovered prop from OptionsMenuToggle and OptionsMenuToggleWithText, all instances of it should be removed from your application.
-**Context selector:** Remove isHover prop from ContextSelectorItem. Remove isHovered and isFocused props from ContextSelectorToggle. All instances of these should be removed from your application.
-**Nav:** Change default theme to dark. Use theme="light" if you wish to use the light variant.
-**Skip to content:** Remove component prop in favor of anchor tag, all instances of it should be removed from your application.
-**Datatoolbar:** Remove separator variant, all instances of it should be removed from your application.
-**Wizard:** Remove isFullHeight and isFullWidth props, all instances of them should be removed from your application.
-**Page:** Change default theme to dark. Use theme="light" if you wish to use the light variant.
+- **Button:** Remove isHover and isFocus props, all instances of them should be removed from your application.
+- **Chip:** Remove isReadOnly prop, all instances of it should be removed from your application.
+- **Dropdown:** Remove isHover and isFocus props from Toggle, KebabToggle, and DropdownToggle. All instances of them should be removed from your application.
+- **Select:**
+  - Remove isFocus prop from SelectOption, all instances of it should be removed from your application.
+  - Remove isFocus and isHovered props from SelectToggle, all instances of them should be removed from your application.
+- **Expandable:**
+  - Rename component to ExpandableSection, all instances in your application should be renamed.
+  - Remove isFocus and isHovered props from ExpandableSection, all instances of them should be removed from your application.
+- **Label:** Remove isCompact prop from Label, all instances of it should be removed from your application.
+- **Options menu:** Remove isFocused and isHovered prop from OptionsMenuToggle and OptionsMenuToggleWithText, all instances of it should be removed from your application.
+- **Context selector:** Remove isHover prop from ContextSelectorItem. Remove isHovered and isFocused props from ContextSelectorToggle. All instances of these should be removed from your application.
+- **Nav:** Change default theme to dark. Use theme="light" if you wish to use the light variant.
+- **Skip to content:** Remove component prop in favor of anchor tag, all instances of it should be removed from your application.
+- **Datatoolbar:** Remove separator variant, all instances of it should be removed from your application.
+- **Wizard:** Remove isFullHeight and isFullWidth props, all instances of them should be removed from your application.
+- **Page:** Change default theme to dark. Use theme="light" if you wish to use the light variant.
 
 ## perf(packages): Use tsc instead of babel for build [(#4076)](https://github.com/patternfly/patternfly-react/pull/4076)
 **ALL packages:**
@@ -30,13 +108,7 @@
 - Many types have been added and amended while converting this project to TS.
 
 ## chore(EmptyStateIcon): Remove unused props interface from EmptyStateIcon [(#4065)](https://github.com/patternfly/patternfly-react/pull/4065)
-Removed IconSize and IconProps from EmptyStateIcon. 
-
-### react-core
-
-**Empty state:** Removed IconSize and IconProps from EmptyStateIcon. Pass a custom `icon` instead.
-
-Closes #3336
+Removed deprecated `size` and `title` from  IconProps.
 
 ## refactor(Wizard): Update string props to be React nodes. [(#4063)](https://github.com/patternfly/patternfly-react/pull/4063)
 1.  `WizardNavItem`: Renamed prop `text` to `content`.  The type of the prop has been changed to React.ReactNode to allow for flexibility.
@@ -93,7 +165,6 @@ Additional issues: https://github.com/patternfly/patternfly/issues/2725
 
 ## feat(Select): change isExpanded to isOpen, split selections prop, rem… [(#3945)](https://github.com/patternfly/patternfly-react/pull/3945)
 1. Renames `isExpanded` property to `isOpen`.
-2. Splits `selections` property into `selection` and `selections` for use in single versus multiple select variants respectively.
 3. Removes deprecated `CheckboxSelect` and `CheckboxSelectOption` components. Please use the `variant = "checkbox"`.
 
 ## Empty state width [(#3933)](https://github.com/patternfly/patternfly-react/pull/3933)
