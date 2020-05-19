@@ -1,4 +1,4 @@
-## PatternFly 4.0 release notes
+## PatternFly 4.0 Core release notes
 
 Hey Fliers, we've been busy for the past 9 weeks working on significant changes to PatternFly's HTML and CSS...
 
@@ -87,7 +87,7 @@ We've cleaned up our root directory a little in [(#2960)](https://github.com/pat
 Removed classes:
 - `.pf-m-no-padding-mobile`
   - Instead, use new class `.pf-m-no-padding{-on-[breakpoint]}` which removes padding from the main page section at an optional breakpoint.
-  - Instead, use new class `.pf-m-padding{-on-[breakpoint]}` which modifies the main page section to add padding back in at a specified breakpoint. Should be used with `.pf-mno-padding`.
+  - Instead, use new class `.pf-m-padding{-on-[breakpoint]}` which modifies the main page section to add padding back in at a specified breakpoint. Should be used with `.pf-m-no-padding`.
 - `.pf-m-redhat-font`
   - This is now the default.
 
@@ -307,7 +307,7 @@ Removed variables:
 - `--pf-c-breadcrumb__link--FontWeight`
 
 #### Button
-- Adds the modifiers `.pf-mstart` and `.pf-mend` to position `pf-c-button__icon` in the button component depending on whether it comes before or after text. We made this change so that we could safely position the icon before or after text, without needing to introduce a new class that wraps the text. **If you are using a button with an icon, you will need to use one of these modifiers to style the icon .**
+- Adds the modifiers `.pf-m-start` and `.pf-m-end` to position `pf-c-button__icon` in the button component depending on whether it comes before or after text. We made this change so that we could safely position the icon before or after text, without needing to introduce a new class that wraps the text. **If you are using a button with an icon, you will need to use one of these modifiers to style the icon .**
 - Removed hover active focus and disabled from workspace [(#2975)](https://github.com/patternfly/patternfly/pull/2975)
 - Cleaned up vars [(#3028)](https://github.com/patternfly/patternfly/pull/3028)
 - Updated control variation disabled state [(#3049)](https://github.com/patternfly/patternfly/pull/3049)
@@ -448,7 +448,7 @@ div.chip-group
 ```
 
 Renamed classes:
-- `.pf-mtoolbar` to `.pf-mcategory`
+- `.pf-m-toolbar` to `.pf-m-category`
 
 Renamed variables:
 - `--pf-c-chip-group--m-toolbar-PaddingTop` to `--pf-c-chip-group--m-category--PaddingTop`
@@ -546,7 +546,7 @@ Updated markup:
 Removed classes:
 - `.pf-m-hover`
 - `.pf-m-focus`
-- `.pf-mdisabled`
+- `.pf-m-disabled`
   - The `:hover`, `:active`, `:focus`, and `:disabled` selectors still have styles applied to them.
 
 Renamed variables:
@@ -709,7 +709,7 @@ Removed variables:
 - Removed hover active focus and disabled from workspace [(#2975)](https://github.com/patternfly/patternfly/pull/2975)
 
 Removed clases:
-- `.pf-mdisabled`
+- `.pf-m-disabled`
   - The `:disabled` selector will still have styles applied to it
 
 Removed variables:
@@ -1036,7 +1036,7 @@ Removed variables:
 
 #### Popover
 - Reduced spacing [(#2762)](https://github.com/patternfly/patternfly/pull/2762)
-  - Title component size changes from `.pf-mxl` to `.pf-mmd`. You will need to change the title component variation used in the popover component from `.pf-mxl` to `.pf-mmd`
+  - Title component size changes from `.pf-m-xl` to `.pf-m-md`. You will need to change the title component variation used in the popover component from `.pf-m-xl` to `.pf-m-md`
 
 Renamed variables:
 - `--pf-c-popover__arrow--m-top--Transform` split into `--pf-c-popover__arrow--m-top--TranslateX` and `--pf-c-popover__arrow--m-top--TranslateY` and `--pf-c-popover__arrow--m-top--Rotate`
@@ -1291,7 +1291,7 @@ Updated variables:
 #### Wizard
 - Updates to shadows and borders [(#2860)](https://github.com/patternfly/patternfly/pull/2860)
 - Move padding modifier to body [(#2924)](https://github.com/patternfly/patternfly/pull/2924)
-  - Moves `.pf-mno-padding` from `.pf-c-wizard__main` to `.pf-c-wizard__main-body` . The same styling will occur to the wizard main body. If you want to remove padding in the wizard main body you should add `.pf-mno-padding` to `.pf-c-wizard__main-body` now.
+  - Moves `.pf-m-no-padding` from `.pf-c-wizard__main` to `.pf-c-wizard__main-body` . The same styling will occur to the wizard main body. If you want to remove padding in the wizard main body you should add `.pf-m-no-padding` to `.pf-c-wizard__main-body` now.
 - Made desktop nav 250px, remove compact modifier [(#2936)](https://github.com/patternfly/patternfly/pull/2936)
 - Reworked wizard so it can be used in modal [(#2964)](https://github.com/patternfly/patternfly/pull/2964)
   - Removed the "modal" functionality/layout from the wizard and makes it a normal container that fills the space of the element it is placed inside of.
