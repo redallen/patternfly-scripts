@@ -82,9 +82,7 @@
 - **Button:** Remove isHover and isFocus props, all instances of them should be removed from your application.
 - **Chip:** Remove isReadOnly prop, all instances of it should be removed from your application.
 - **Dropdown:** Remove isHover and isFocus props from Toggle, KebabToggle, and DropdownToggle. All instances of them should be removed from your application.
-- **Select:**
-  - Remove isFocus prop from SelectOption, all instances of it should be removed from your application.
-  - Remove isFocus and isHovered props from SelectToggle, all instances of them should be removed from your application.
+- **Select:** Remove isFocus and isHovered props from SelectToggle, all instances of them should be removed from your application.
 - **Expandable:**
   - Rename component to ExpandableSection, all instances in your application should be renamed.
   - Remove isFocus and isHovered props from ExpandableSection, all instances of them should be removed from your application.
