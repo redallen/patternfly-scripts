@@ -230,6 +230,15 @@ Additional issues: https://github.com/patternfly/patternfly/issues/2725
 ## chore(table): update types in table [(#3296)](https://github.com/patternfly/patternfly-react/pull/3296)
 - Change type of `onSelect` in Table from `(event: React.ChangeEvent<HTMLInputElement>) => void` to `(event: React.FormEvent<HTMLInputElement>) => void`
 
+## fix(charts): Bump Victory packages [(#3974)](https://github.com/patternfly/patternfly-react/pull/3974)
+- Updated Victory to package versions to 34.x
+
+## fix(charts): Update react-charts types [(#4138)](https://github.com/patternfly/patternfly-react/pull/4138)
+- Removed the @types/victory dependency and updated the PatternFly charts to use the types introduced with Victory 34.x
+
+## fix(charts): Update react-charts types [(#4152)](https://github.com/patternfly/patternfly-react/pull/4152)
+- Updated label prop types to sync with Victory 34.x
+
 ## fix(charts): Use Victory's createContainer instead of allowZoom prop [(#4278)](https://github.com/patternfly/patternfly-react/pull/4278)
 - Use `containerComponent={<VictoryZoomComponent />}` with Chart instead of `allowZoom`
 - Use `containerComponent={<VictoryZoomComponent />}` with ChartGroup instead of `allowZoom`
