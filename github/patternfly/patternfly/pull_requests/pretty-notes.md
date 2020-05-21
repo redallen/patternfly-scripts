@@ -5,8 +5,9 @@ Hey Fliers, we've been busy for the past 9 weeks working on significant changes 
 **Table of contents**
 - [Global](#global)
   - [Colors](#colors)
-  - [Mobile first](#mobile-first)
-  - [Old shield styles](#old-shield-styles)
+  - [Mobile first CSS](#mobile-first-css)
+  - [Vertical navigation hidden breakpoint](#vertical-navigation-hidden-breakpoint)
+  - [Removed "shield" CSS](#removed-shield-css)
   - [Default font](#default-font)
   - [Directory structure](#directory-structure)
   - [Code changes](#code-changes)
@@ -28,7 +29,7 @@ Hey Fliers, we've been busy for the past 9 weeks working on significant changes 
   - [Drawer](#drawer)
   - [Dropdown](#dropdown)
   - [Empty state](#empty-state)
-  - [Expandable section (previously Expandable)](#expandable-section-(previously-expandable))
+  - [Expandable section (previously Expandable)](#expandable-section-previously-expandable)
   - [File upload](#file-upload)
   - [Form](#form)
   - [Form control](#form-control)
@@ -49,7 +50,7 @@ Hey Fliers, we've been busy for the past 9 weeks working on significant changes 
   - [Switch](#switch)
   - [Tabs](#tabs)
   - [Table](#table)
-  - [Toolbar (previously Data toolbar)](#toolbar-(previously-data-toolbar))
+  - [Toolbar (previously Data toolbar)](#toolbar-previously-data-toolbar)
   - [Tooltip](#tooltip)
   - [Wizard](#Wizard)
 - [Layouts](#layouts)
@@ -59,8 +60,8 @@ Hey Fliers, we've been busy for the past 9 weeks working on significant changes 
 We've updated colors to be ??? @mceledonia
 
 #### Mobile first CSS
-We've updated most of our components' CSS to be mobile first by using `@min-width` media query changes. The components that are now mobile-first are: background image, data list, toolbar, form, login, page, toolbar, and wizard [(#2816)](https://github.com/patternfly/patternfly/pull/2816).
-  * One component that cannot satisfy this is the table. At the mobile viewport, native/default properties are modified to achieve a grid based layout. To overwrite these changes would require adding back native properties to the table. For that reason, the table will remain the exception to a “mobile-first” approach.
+We've updated some components' CSS to be mobile first by using `@min-width` media queries. The components that are now mobile-first are: background image, data list, toolbar, form, login, page, toolbar, and wizard [(#2816)](https://github.com/patternfly/patternfly/pull/2816).
+  * All components are now mobile-first, but one component that cannot satisfy this is the table, specifically with use of the `.pf-m-grid[-on-{breakpoint}]` modifers. At the specified grid breakpoint, native/default properties are modified to achieve a grid based layout. To overwrite these changes would require adding back native properties to the table. For that reason, the table will remain the exception to a “mobile-first” approach.
 
 #### Vertical navigation hidden breakpoint
 We've changed the breakpoint at which we hide the vertical nav to be `$pf-global--breakpoint--xl` (1200px) rather than `$pf-global--breakpoint--md` (768px) [(#2962)](https://github.com/patternfly/patternfly/pull/2962). The overall page chrome and some individual components' horizontal spacing becomes more compact at this breakpoint (true of the old breakpoint and the new), so applications may find that custom elements that aligned with the old breakpoint may not align now since the chrome spacing changes at 1200px instead of 768px. An application may need to make updates to match the chrome's spacing at the new breakpoint.
@@ -73,7 +74,7 @@ We've updated the default font to be `RedHatText` instead of `Overpass` [(#2955)
 
 PatternFly has chosen to adopt a single font (`RedHatText`) across the library [(#3023)](https://github.com/patternfly/patternfly/pull/3023). Previously, when having opted in to the Red Hat font via `.pf-m-redhat-font`, PatternFly used 2 fonts - `RedHatText` (RHT) defined as `--pf-global--FontFamily--sans-serif`, and `RedHatDisplay` (RHD) defined as `--pf-global--FontFamily--heading--sans-serif`. `--pf-global--FontFamily--heading--sans-serif` has been removed and components have been updated to use `--pf-global--FontFamily--sans-serif` instead.
 
-Users do not have to do anything further to consume this change. However, with the change from `Overpass` to `RedHatText`, and with the removal of `RedHatDisplay`, we encourage applications to review their application's typography styles to ensure they are correct.
+Users do not have to do anything further to consume this change. However, with the change from `Overpass` to `RedHatText`, and with the removal of `RedHatDisplay`, we encourage teams to review their application's typography styles to ensure they are correct.
 
 #### Directory structure
 We've cleaned up our root directory a little in [(#2960)](https://github.com/patternfly/patternfly/pull/2960). If you're compiling or importing more internal parts of PatternFly, you'll likely need to update your imports:
@@ -94,34 +95,31 @@ We've cleaned up our root directory a little in [(#2960)](https://github.com/pat
 Updated CSS:
 - `--pf-global--gutter` has changed to `--pf-global--spacer--md`
 - `--pf-global--gutter--md` has changed to `--pf-global--spacer--lg`
-- `--pf-global--success-color--100` has changed to `$pf-color-green-500`
-- `--pf-global--success-color--200` has changed to `$pf-color-green-700`
-- `--pf-global--info-color--100` has changed to `$pf-color-blue-300`
-- `--pf-global--BackgroundColor--200` has changed to `$pf-color-black-200`
-- `$pf-color-green-50` has changed to `#f3faf2`
-- `$pf-color-green-500` has changed to `#3e8635`
-- `$pf-color-black-200` has changed to `#f0f0f0`
-- `$pf-color-black-600` has changed to `#6a6e73`
-- `$pf-color-blue-50` has changed to `#e7f1fa`
-- `$pf-color-blue-600` has changed to `#002952 `
-- `$pf-color-blue-700` has changed to `#001223 `
-- `$pf-color-cyan-600` has changed to `#002323`
-- `$pf-color-cyan-700` has changed to `#000f0f `
+- `--pf-global--success-color--100` has changed to `--pf-global--palette--green-500`
+- `--pf-global--success-color--200` has changed to `--pf-global--palette--green-700`
+- `--pf-global--info-color--100` has changed to `--pf-global--palette--blue-300`
+- `--pf-global--BackgroundColor--200` has changed to `--pf-global--palette--black-200`
+- `--pf-global--palette--green-50` has changed to `#f3faf2`
+- `--pf-global--palette--green-500` has changed to `#3e8635`
+- `--pf-global--palette--black-200` has changed to `#f0f0f0`
+- `--pf-global--palette--black-600` has changed to `#6a6e73`
+- `--pf-global--palette--blue-50` has changed to `#e7f1fa`
+- `--pf-global--palette--blue-600` has changed to `#002952 `
+- `--pf-global--palette--blue-700` has changed to `#001223 `
+- `--pf-global--palette--cyan-600` has changed to `#002323`
+- `--pf-global--palette--cyan-700` has changed to `#000f0f `
 - Updated global shadows and added xl shadow [(#2854)](https://github.com/patternfly/patternfly/pull/2854)
 - Added new cyan, gold, green, red colors [(#2906)](https://github.com/patternfly/patternfly/pull/2906)
 
 Removed classes:
-- `.pf-m-no-padding-mobile`
-  - Instead, use new class `.pf-m-no-padding{-on-[breakpoint]}` which removes padding from the main page section at an optional breakpoint.
-  - Instead, use new class `.pf-m-padding{-on-[breakpoint]}` which modifies the main page section to add padding back in at a specified breakpoint. Should be used with `.pf-m-no-padding`.
 - `.pf-m-redhat-font`
-  - Red Hat font is now the default. Use `.pf-m-overpass-font` to use Overpass instead.
+  - `RedHatText` is now the default font. Apply `.pf-m-overpass-font` to use `Overpass` instead.
 
 Removed variables:
 - `--pf-global--BackgroundColor--150` and `--pf-global--BackgroundColor--300`
   - These can be updated to use `--pf-global--BackgroundColor--200` instead. However you might want to consult your visual designer first.
 - All bootstrap variables [(#2871)](https://github.com/patternfly/patternfly/pull/2871)
-  - These are no longer part of building the standard patternfly CSS. If you still need these, you can import `sass-utilities/bs-variables.scss` manually.
+  - These are no longer included with PatternFly by default. If you still need these, you can import `sass-utilities/bs-variables.scss` manually.
 - `--pf-global--link--FontWeight`
 - `--pf-global--FontFamily--redhatfont--sans-serif`
 - `--pf-global--FontFamily--redhatfont--heading--sans-serif`
@@ -131,16 +129,16 @@ Removed variables:
 
 ### Components
 
-**CSS variables**
+**CSS variables:**
 Our components have seen many CSS variables changed, removed, and renamed. Removed and renamed variables may require changes to your CSS and HTML.
 
-**Visual changes**
+**Visual changes:**
 Many of our components have had design updates that introduce visual breaking changes. Some are simple updates to existing styles (e.g., spacing or color), while others are an overhaul of the design (e.g., Tabs and Label).
 
-**Renamed and removed components**
-- DataToolbar has been renamed to Toolbar.
-- The Toolbar layout has been removed.
-- Expandable has been renamed to ExpandableSection.
+**Renamed and removed components:**
+- Data toolbar (`.pf-c-data-toolbar`) has been renamed to toolbar (`.pf-c-toolbar`).
+- The toolbar layout (`.pf-l-toolbar`) has been removed.
+- Expandable (`.pf-c-expandable`) has been renamed to expandable section (`.pf-c-expandable-section`).
 
 #### About modal box
 - Removed the class `.pf-m-hover`, which modified the close button. [(#2975)](https://github.com/patternfly/patternfly/pull/2975).
@@ -1167,57 +1165,6 @@ Removed variables:
 
 Updated CSS:
 - The CSS for tabs was refactored. See the [PR changeset](https://github.com/patternfly/patternfly/pull/2757/files) for a full list of the changes.
-
-<!--
-Renamed classes:
-- `.pf-c-tabs__button` to `.pf-c-tabs__link`
-
-Renamed variables:
-- Updates any tabs CSS variable with a reference to the BEM element `__button` to `__link`. Any references to tabs variables with `__button` should be replaced with `__link`. (e.g. `--pf-c-tabs--m-box__button--BackgroundColor` becomes `--pf-c-tabs--m-box__link--BackgroundColor`)
-- `--pf-c-tabs--Inset` to `--pf-c-tabs--inset`
-- `--pf-c-tabs--before--BorderWidth` to `--pf-c-tabs--before--border-width--base`
-- `--pf-c-tabs--m-vertical--Inset` to `--pf-c-tabs--m-vertical--inset`
-- `--pf-c-tabs--m-vertical--m-box--Inset` to `--pf-c-tabs--m-vertical--m-box--inset`
-- `--pf-c-tabs__item--m-current__link--Background` to `--pf-c-tabs__item--m-current__link--BackgroundColor`
-- `--pf-c-tabs__link--before--BorderColor` to `--pf-c-tabs__link--before--border-color--base`
-- `--pf-c-tabs__link--before--BorderWidth` to `--pf-c-tabs__link--before--border-width--base`
-- `--pf-c-tabs__scroll-button--Transition` was removed and users can control the individual transform durations via `--pf-c-tabs__scroll-button--TransitionDuration--margin`, `--pf-c-tabs__scroll-button--TransitionDuration--transform`, and `--pf-c-tabs__scroll-button--TransitionDuration--opacity`
-- `--pf-c-tabs__scroll-button--before--BorderWidth` to `--pf-c-tabs__scroll-button--before--border-width--base`
-
-Removed variables:
-- `--pf-c-tabs__item--hover--Color`
-- `--pf-c-tabs__button--FontWeight`
-- `--pf-c-tabs__button--Background`
-- `--pf-c-tabs__scroll-button--ZIndex`
-- `--pf-c-tabs__scroll-button--m-secondary--hover--Color`
-- `--pf-c-tabs__scroll-button--m-secondary-right--m-start-current--Color`
-- `--pf-c-tabs__scroll-button--m-secondary--nth-of-type-1--BoxShadow`
-- `--pf-c-tabs__scroll-button--m-secondary--nth-of-type-2--BoxShadow`
-- `--pf-c-tabs__item--BackgroundColor`
-- `--pf-c-tabs__item--BorderColor`
-- `--pf-c-tabs__item--BorderWidth`
-- `--pf-c-tabs__item--m-current--ZIndex`
-- `--pf-c-tabs__item--m-current--Color`
-- `--pf-c-tabs__item--m-current--BorderTopWidth`
-- `.pf-m-start`
-- `.pf-m-end`
-- `.pf-m-start-current`
-- `.pf-m-end-current`
-- `--pf-c-tabs--before--BorderStyle`
-- `--pf-c-tabs__link--before--BorderStyle`
-- `--pf-c-tabs__link--after--BorderStyle`
-- `--pf-c-tabs__scroll-button--BorderStyle`
-- `--pf-c-tabs__link--child--MarginRight`
-- `--pf-c-tabs--m-vertical--m-box__link--after--Top`
-
-Updated CSS:
-- `--pf-c-tabs__button--Color` to `var(--pf-global--Color--200)`
-- `--pf-c-tabs__button--OutlineOffset` to `calc(-1 * #{pf-size-prem(6px)})`
-- `--pf-c-tabs__button--PaddingRight` to `var(--pf-global--spacer--md)`
-- `--pf-c-tabs__button--PaddingLeft` to `var(--pf-global--spacer--md)`
-- `--pf-c-tabs__scroll-button--Width` to `var(--pf-global--spacer--2xl)`
-
--->
 
 #### Table
 - Reduced spacing [(#2775)](https://github.com/patternfly/patternfly/pull/2775)
