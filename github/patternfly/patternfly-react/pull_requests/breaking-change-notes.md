@@ -229,3 +229,8 @@ Additional issues: https://github.com/patternfly/patternfly/issues/2725
 
 ## chore(table): update types in table [(#3296)](https://github.com/patternfly/patternfly-react/pull/3296)
 - Change type of `onSelect` in Table from `(event: React.ChangeEvent<HTMLInputElement>) => void` to `(event: React.FormEvent<HTMLInputElement>) => void`
+
+## fix(charts): Use Victory's createContainer instead of allowZoom prop [(#4278)](https://github.com/patternfly/patternfly-react/pull/4278)
+- Use `containerComponent={<VictoryZoomComponent />}` with Chart instead of `allowZoom`
+- Use `containerComponent={<VictoryZoomComponent />}` with ChartGroup instead of `allowZoom`
+
