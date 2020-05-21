@@ -44,6 +44,7 @@ Hey Fliers, we've been busy for the past 9 weeks keeping up with changes to Patt
   - [Title](#title)
   - [Toolbar (formerly DataToolbar)](#toolbar-(formerly-datatoolbar))
   - [Wizard](#wizard)
+- [React-charts](#react-charts)
 - [React icons](#react-icons)
 - [React inline edit extension](#react-inline-edit-extension)
 - [React styles](#react-styles)
@@ -268,6 +269,13 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
   - Removed prop `isCompactNav`, all instances of it should be removed from your application. [(#4142)](https://github.com/patternfly/patternfly-react/pull/4142)
 
 - **WizardNavItem**: Renamed prop `text` to `content`. The type of the prop has been changed to React.ReactNode to allow for flexibility. [(#4063)](https://github.com/patternfly/patternfly-react/pull/4063)
+
+### React charts
+- Updated Victory to package versions to 34.x. [(#3974)](https://github.com/patternfly/patternfly-react/pull/3974)
+- Removed the `@types/victory` dependency and updated the PatternFly charts to use the types introduced with Victory 34.x. [(#4138)](https://github.com/patternfly/patternfly-react/pull/4138)
+- Updated label prop types to sync with Victory 34.x. [(#4152)](https://github.com/patternfly/patternfly-react/pull/4152)
+- Use `containerComponent={<VictoryZoomComponent />}` with Chart instead of `allowZoom`. [(#4278)](https://github.com/patternfly/patternfly-react/pull/4278)
+- Use `containerComponent={<VictoryZoomComponent />}` with ChartGroup instead of `allowZoom`. [(#4278)](https://github.com/patternfly/patternfly-react/pull/4278)
 
 ### React icons
 - Updated types.
