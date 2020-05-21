@@ -1,4 +1,4 @@
-## PatternFly 4.0 release notes
+## PatternFly 4.0 Core release notes
 
 Hey Fliers, we've been busy for the past 9 weeks working on significant changes to PatternFly's HTML and CSS...
 
@@ -111,6 +111,9 @@ Updated CSS:
 - Added new cyan, gold, green, red colors [(#2906)](https://github.com/patternfly/patternfly/pull/2906)
 
 Removed classes:
+- `.pf-m-no-padding-mobile`
+  - Instead, use new class `.pf-m-no-padding{-on-[breakpoint]}` which removes padding from the main page section at an optional breakpoint.
+  - Instead, use new class `.pf-m-padding{-on-[breakpoint]}` which modifies the main page section to add padding back in at a specified breakpoint. Should be used with `.pf-m-no-padding`.
 - `.pf-m-redhat-font`
   - Red Hat font is now the default. Use `.pf-m-overpass-font` to use Overpass instead.
 
