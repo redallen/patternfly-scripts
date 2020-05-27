@@ -12,7 +12,6 @@ Hey Fliers, we've been busy for the past 9 weeks keeping up with changes to Patt
   - [Background image](#background-image)
   - [Button](#button)
   - [Card](#card)
-  - [Chip](#chip)
   - [Chip group](#chip-group)
   - [Context selector](#context-selector)
   - [Data list](#data-list)
@@ -56,10 +55,10 @@ Hey Fliers, we've been busy for the past 9 weeks keeping up with changes to Patt
 - We have updated our React peer dependencies so that our packages now can possibly use hooks, which requires `react@^16.8.0` instead of `react@^16.4.0`. We recommend upgrading your version of React if it is below 16.8.0.
 
 ### React core
-Major changes include removing the `Toolbar` layout in favor of a new `PageHeaderTools` component. `DataToolbar` has been renamed `Toolbar`. `Expandable` has been renamed `ExpandableSection`.
+- Major changes include removing the `Toolbar` layout in favor of a new `PageHeaderTools` component. `DataToolbar` has been renamed `Toolbar`. `Expandable` has been renamed `ExpandableSection`.
 
 #### About modal
-**AboutModalContainer**:
+- **AboutModalContainer**:
   - Removed prop `ariaLabelledbyId` in favor of `aboutModalBoxHeaderId`
   - Removed prop `ariaDescribedById` in favor of `aboutModalBoxContentId`
 
@@ -67,8 +66,7 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 - Removed prop `noBoxShadow`. If a shadow is needed, the accordion can be placed in a card, or a shadow can be applied either using CSS or a box-shadow utility class. [(#4022)](https://github.com/patternfly/patternfly-react/pull/4022)
 
 #### Alert
-- Change default variant to `default` [(#3903)](https://github.com/patternfly/patternfly-react/pull/3903)
-  - To maintain current default behavior, set the `variant` property to `info`.
+- Changed default variant to `default`. To maintain current default behavior, set the `variant` property to `info`.[(#3903)](https://github.com/patternfly/patternfly-react/pull/3903). 
 - If you were previously using the `action` prop for the close button, use the `actionClose` prop instead [(#4190)](https://github.com/patternfly/patternfly-react/pull/4190) 
 - If you were previously using the `action` prop for a link button, use the `actionLinks` prop instead [(#4190)](https://github.com/patternfly/patternfly-react/pull/4190)
 
@@ -80,21 +78,20 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 - Removed always ignored `[BackgroundImageSrc.filter]` for new `filter` prop of type `ReactNode` [(#3886)](https://github.com/patternfly/patternfly-react/pull/3886)
 
 #### Button
-- **Button:** Removed props `isHover` and `isFocus`, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- Removed props `isHover` and `isFocus` props, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 
 #### Card
-**CardHeader**: Renamed to CardTitle [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
-**CardHeadMain**: Renamed to CardHeaderMain [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
-**CardHead**: Renamed to CardHeader [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
+- **CardHeader**: 
+  - Renamed to CardTitle [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
+- **CardHeadMain**: 
+  - Renamed to CardHeaderMain [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
+- **CardHead**:
+  - Renamed to CardHeader [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
 
-#### Chip
-- **Chip:**
-  - Removed prop `isReadOnly`, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-  - The overflow chip no longer contains a button. To specify a overflow chip as a button do use `<Chip component='button' isOverflowChip>Chip</Chip>` [(#4246)](https://github.com/patternfly/patternfly-react/pull/4246)
-
-- **ChipButton**: Removed prop `ariaLabel` in favor of `aria-label`
 
 #### Chip group
+- **Chip:**
+  - The overflow chip no longer contains a button. To specify a overflow chip as a button do use `<Chip component='button' isOverflowChip>Chip</Chip>` [(#4246)](https://github.com/patternfly/patternfly-react/pull/4246
 - **ChipGroup** :
   - Removed prop `withToolbar`. Use the `categoryName` prop instead to add a chip group with a category. [(#4246)](https://github.com/patternfly/patternfly-react/pull/4246)
   - Removed prop `headingLevel`. The category name has internally been switched to a `<span>`. [(#4246)](https://github.com/patternfly/patternfly-react/pull/4246)
@@ -102,20 +99,21 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 
 
 #### Context selector
-- **ContextSelectorItem:** Removed prop `isHover`. All instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-- **ContextSelectorToggle:** Removed props `isHovered` and `isFocused`. All instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- **ContextSelectorItem:** 
+  - Removed prop `isHover`. All instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- **ContextSelectorToggle:** 
+  - Removed props `isHovered` and `isFocused`. All instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 
 #### Data list
-- **DataList:** Renamed `noPadding` to `hasNoPadding`. [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
+- Renamed `noPadding` to `hasNoPadding`. [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
 
 #### Divider
-- Removed promoted component from experimental index file. [(#4029)](https://github.com/patternfly/patternfly-react/pull/4029)
-  - Change `import { Divider } from '@patternfly/react-core/dist/esm/experimental';` to `'import { Divider } from '@patternfly/react-core/dist/esm/components';`.
+- Removed promoted component from experimental index file. Change import path from  `import { Divider } from '@patternfly/react-core/dist/esm/experimental';` to `'import { Divider } from '@patternfly/react-core/dist/esm/components';` [(#4029)](https://github.com/patternfly/patternfly-react/pull/4029). 
+
 
 #### Drawer
-- **Drawer:**
-  - Renamed `noPadding` to `hasNoPadding`. [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
-  - Removed import path `'@patternfly/react-core/dist/js/experimental'`. The import path `'@patternfly/react-core'` should be used instead. [(#4176)](https://github.com/patternfly/patternfly-react/pull/4176)
+- Renamed `noPadding` to `hasNoPadding`. [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
+- Removed import path `'@patternfly/react-core/dist/js/experimental'`. The import path `'@patternfly/react-core'` should be used instead. [(#4176)](https://github.com/patternfly/patternfly-react/pull/4176)
 
 #### Dropdown
 - **Dropdown:**
@@ -129,15 +127,15 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 
 #### Empty state
 - **EmptyState**
-  - Changes the default width to `full` instead of `large`.  To maintain the previous default behaviour, set the `variant` prop to large. e.g `<EmptyState variant={EmptyStateVariant.large}> ...</EmptyState>` [(#3933)](https://github.com/patternfly/patternfly-react/pull/3933) 
+  - Changed the default width to `full` instead of `large`.  To maintain the previous default behaviour, set the `variant` prop to large. e.g `<EmptyState variant={EmptyStateVariant.large}> ...</EmptyState>` [(#3933)](https://github.com/patternfly/patternfly-react/pull/3933) 
   - Variant `small` has been updated to `sm` [(#3933)](https://github.com/patternfly/patternfly-react/pull/3933)
   - Variant `large` has been updated to `lg` [(#3933)](https://github.com/patternfly/patternfly-react/pull/3933)
-- **EmptyStateIcon**: Removed deprecated `size` and `title` from  IconProps.
+- **EmptyStateIcon**: 
+  - Removed deprecated `size` and `title` from  IconProps.
 
 #### Expandable section (formerly Expandable)
-- **ExpandableSection:**
-  - Renamed component to `ExpandableSection`, all instances in your application should be renamed. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-  - Removed props `isFocus` and `isHovered` from ExpandableSection, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- Renamed component to `ExpandableSection`, all instances in your application should be renamed. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- Removed props `isFocus` and `isHovered` from ExpandableSection, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 
 #### Form select
 - Removed `isValid` prop, `validated` prop should be used instead. To set a the input to invalid, set `validated` prop to `error` or the  enum value `ValidatedOptions.error`. [(#3975)](https://github.com/patternfly/patternfly-react/pull/3975)
@@ -149,41 +147,48 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 - Removed prop `gutter` in favor of `hasGutter` [(#4014)](https://github.com/patternfly/patternfly-react/pull/4014)
 
 #### Label
-- **Label:**
-  - Removed prop `isCompact` from Label, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-  - Default color changed to grey. Design also adjusted. [(#4165)](https://github.com/patternfly/patternfly-react/pull/4165)
+- Removed prop `isCompact` from Label, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- Default color changed to grey. Design also adjusted. [(#4165)](https://github.com/patternfly/patternfly-react/pull/4165)
 
 #### Level
 - Removed prop `gutter` in favor of `hasGutter` [(#4014)](https://github.com/patternfly/patternfly-react/pull/4014)
 
 #### Login page
-**LoginForm**: Removed prop `rememberMeAriaLabel` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
+- **LoginForm**: 
+  - Removed prop `rememberMeAriaLabel` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
 
 #### Modal
-**Modal**
-  - Collapses the `isLarge` and `isSmall` properties into a single `variant` property. To maintain the current behavior, set the `variant` property to `large` or `small`, or use the newly added `ModalVariant` enum as `ModalVariant.large` or `ModalVariant.small`. [(#3920)](https://github.com/patternfly/patternfly-react/pull/3920)
+- **Modal**
+  - Collapsed the `isLarge` and `isSmall` properties into a single `variant` property. To maintain the current behavior, set the `variant` property to `large` or `small`, or use the newly added `ModalVariant` enum as `ModalVariant.large` or `ModalVariant.small`. [(#3920)](https://github.com/patternfly/patternfly-react/pull/3920)
   - Removed prop `ariaDescribedById` in favor of `modalContentAriaDescribedById` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
   - Removed prop `isFooterLeftAligned `. This prop is now always enabled and cannot be opted-out of. [(#4017)](https://github.com/patternfly/patternfly-react/pull/4017)
   - Removed prop `hideTitle`. To hide the Modal header, do not pass a title prop, a description prop, or a header prop. If there is no title or header passed, please provide an `aria-label` prop to the Modal component to make it accessible. [(#4140)](https://github.com/patternfly/patternfly-react/pull/4140)
-**ModalContent**: Removed prop `ariaDescribedById` in favor of `modalBoxAriaDescribedById`
-**ModalFooter**: Removed prop `isLeftAligned` [(#4017)](https://github.com/patternfly/patternfly-react/pull/4017)
+- **ModalContent**: 
+  - Removed prop `ariaDescribedById` in favor of `modalBoxAriaDescribedById`
+- **ModalFooter**: 
+  - Removed prop `isLeftAligned` [(#4017)](https://github.com/patternfly/patternfly-react/pull/4017)
 
 #### Nav
-- **Nav:** Change default theme to dark. Use `theme="light"` if you wish to use the light variant. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-- **NavList:** Removed prop `variant`. Pass `variant="horizontal"` or `variant="tertiary"` to `Nav` instead. [(#4225)](https://github.com/patternfly/patternfly-react/pull/4225)
+- **Nav:** 
+  - Changed default theme to dark. Use `theme="light"` if you wish to use the light variant. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- **NavList:** 
+  - Removed prop `variant`. Pass `variant="horizontal"` or `variant="tertiary"` to `Nav` instead. [(#4225)](https://github.com/patternfly/patternfly-react/pull/4225)
 
 #### Options menu
-- **OptionsMenu**: Removed prop `ariaLabelMenu`.
-- **OptionsMenuItemGroup**: Removed prop `ariaLabel` in favor of `aria-label`
+- **OptionsMenu**: 
+  - Removed prop `ariaLabelMenu`.
+- **OptionsMenuItemGroup**: 
+  - Removed prop `ariaLabel` in favor of `aria-label`
 - **OptionsMenuToggleWithText**:
   - Removed prop `ariaHasPopup` in favor of `aria-haspopup`
   - Removed props `isFocused` and `isHovered`, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
-- **OptionsMenuToggle:** Removed props `isFocused` and `isHovered`, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- **OptionsMenuToggle:** 
+  - Removed props `isFocused` and `isHovered`, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 
 #### Page
 - **Page:**
-  - Make mainContainerId a required property for skip to content component [(#3904)](https://github.com/patternfly/patternfly-react/pull/3904)
-  - Change default theme to dark. Use `theme="light"` if you wish to use the light variant. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+  - Made mainContainerId a required property for skip to content component [(#3904)](https://github.com/patternfly/patternfly-react/pull/3904)
+  - Changed default theme to dark. Use `theme="light"` if you wish to use the light variant. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
   - Renamed `noPadding` to `hasNoPadding`. [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
 - **PageSection:**
   - Removed prop `noPaddingMobile` from PageSection in favor of `hasNoPaddingOn={PageSectionBreakpoints[]}` [(#4133)](https://github.com/patternfly/patternfly-react/pull/4133)
@@ -196,12 +201,16 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 - Removed obsolete 'left' and 'right' variants. These should be replaced with 'top' (default) or 'bottom'. [(#4202)](https://github.com/patternfly/patternfly-react/pull/4202)
 
 #### Popover
-**PopoverHeader:** Title now has a default size of medium instead of extra large [(#4030)](https://github.com/patternfly/patternfly-react/pull/4030)
+- **PopoverHeader:** 
+  - Title now has a default size of medium instead of extra large [(#4030)](https://github.com/patternfly/patternfly-react/pull/4030)
 
 #### Progress
-- **Progress:** Removed deprecated `ProgressVariant.info` that adds no styling. Do not pass this prop or pass `null` instead. [(#3886)](https://github.com/patternfly/patternfly-react/pull/3886)
-- **ProgressBar**: Removed prop `ariaProps` in favor of `progressBarAriaProps` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
-- **ProgressContainer**: Removed prop `ariaProps` in favor of `progressBarAriaProps` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
+- **Progress:** 
+  - Removed deprecated `ProgressVariant.info` that adds no styling. Do not pass this prop or pass `null` instead. [(#3886)](https://github.com/patternfly/patternfly-react/pull/3886)
+- **ProgressBar**: 
+  - Removed prop `ariaProps` in favor of `progressBarAriaProps` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
+- **ProgressContainer**: 
+  - Removed prop `ariaProps` in favor of `progressBarAriaProps` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
 
 #### Select
 - **Select**:
@@ -212,14 +221,15 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
   - Removed prop `ariaLabelRemove` in favor of `RemovedelectionAriaLabel` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
   - Renamed `isExpanded` property to `isOpen` [(#3945)](https://github.com/patternfly/patternfly-react/pull/3945)
   - Removed deprecated `CheckboxSelect` and `CheckboxSelectOption` in favor of `variant="checkbox"`
-- **SelectOption:** Removed prop `isFocus`, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- **SelectOption:** 
+  - Removed prop `isFocus`, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 - **SelectToggle**
   - Removed prop `ariaLabelledBy` in favor of `aria-labelledby` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
   - Removed prop `ariaLabelToggle` in favor of `aria-label` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
   - Removed props `isFocus` and `isHovered`, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 
 #### Skip to content
-- **SkipToContent:** Removed `component` prop in favor of always using an anchor tag, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
+- Removed `component` prop in favor of always using an anchor tag, all instances of it should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
 
 #### Split
 - Removed prop `gutter` in favor of `hasGutter` [(#4014)](https://github.com/patternfly/patternfly-react/pull/4014)
@@ -228,13 +238,14 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 - Removed prop `gutter` in favor of `hasGutter` [(#4014)](https://github.com/patternfly/patternfly-react/pull/4014)
 
 #### Tabs
-- **Tab**: The title should be wrapped with `<TabTitleText>` for proper styling.  If you would like to place an Icon in the Tab, it should be wrapped with `<TabTitleIcon>` for proper styling. [(#4146)](https://github.com/patternfly/patternfly-react/pull/4146)
+- **Tab**: 
+  - The title should be wrapped with `<TabTitleText>` for proper styling.  If you would like to place an Icon in the Tab, it should be wrapped with `<TabTitleIcon>` for proper styling. [(#4146)](https://github.com/patternfly/patternfly-react/pull/4146)
 - **Tabs**:
   - Changed prop `variant` for consistency. You will need to update all instances of `variant` prop to `component` [(#4146)](https://github.com/patternfly/patternfly-react/pull/4146)
   - Changed `TabVariant` enum Name to `TabComponent` for consistent naming.  You will now need to update all instances of `TabVariant` to `TabComponent`. [(#4146)](https://github.com/patternfly/patternfly-react/pull/4146)
 
 #### Table
-- Update onSelect type from `(event: React.ChangeEvent<HTMLInputElement>) => void` to `(event: React.FormEvent<HTMLInputElement>) => void` [(#3296)](https://github.com/patternfly/patternfly-react/pull/3296)
+- Updated onSelect type from `(event: React.ChangeEvent<HTMLInputElement>) => void` to `(event: React.FormEvent<HTMLInputElement>) => void` [(#3296)](https://github.com/patternfly/patternfly-react/pull/3296)
 - Removed `cellHeightAuto` transformer. All instances of it should be removed from your application. [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
 - `cellWidth('max')` has been replaced with `cellWidth(100)` [(#4170)](https://github.com/patternfly/patternfly-react/pull/4170)
 
@@ -245,11 +256,11 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
 - Removed `isValid` prop, `validated` prop should be used instead. To set a the input to invalid, set `validated` prop to `error` or the  enum value `ValidatedOptions.error`. [(#3975)](https://github.com/patternfly/patternfly-react/pull/3975)
 
 #### Title
-- Make headingLevel required and remove default of "h2" to improve accessibility [(#3922)](https://github.com/patternfly/patternfly-react/pull/3922)
-  - Removes enum `TitleLevel`. Use one of the string values 'h1', 'h2', 'h3', 'h4', 'h5', or 'h6' instead.
-  - Heading levels should be set contextually and and always be increasing or decreasing by 1 when read top-to-bottom in the DOM.
+- Make `headingLevel` required and remove default of `h2` to improve accessibility [(#3922)](https://github.com/patternfly/patternfly-react/pull/3922)
+- Removes enum `TitleLevel`. Use one of the string values `h1`, `h2`, `h3`, `h4`, `h5`, or `h6` instead.
+- Heading levels should be set contextually and and always be increasing or decreasing by 1 when read top-to-bottom in the DOM.
 - Rename enum `TitleSize` to `TitleSizes` [(#3922)](https://github.com/patternfly/patternfly-react/pull/3922)
-  - Removes invalid values `xs` and `sm` for `size` prop. Use size `md` instead.
+- Removes invalid values `xs` and `sm` for `size` prop. Use size `md` instead.
 
 #### Toolbar (formerly DataToolbar)
 - The old Toolbar component that is normally used in the PageHeader has been removed in favor of `PageHeaderTools`. [(#4223)](https://github.com/patternfly/patternfly-react/pull/4223)
@@ -261,14 +272,17 @@ Major changes include removing the `Toolbar` layout in favor of a new `PageHeade
   - Removed prop `ariaLabelCloseButton` in favor of `closeButtonAriaLabel` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
   - Removed props `isFullHeight` and `isFullWidth`, all instances of them should be removed from your application. [(#4116)](https://github.com/patternfly/patternfly-react/pull/4116)
   - Renamed prop `hasBodyPadding` to `hasNoBodyPadding`. [(#4136)](https://github.com/patternfly/patternfly-react/pull/4136)
-  - Removed inPage prop. By default the Wizard will be displayed in page, filling its parent container. If the consumer passes a managed `isOpen` flag, then the Wizard will be displayed in a modal. [(#4140)](https://github.com/patternfly/patternfly-react/pull/4140)
-- **WizardBody:** Renamed `hasBodyPadding` to `hasNoBodyPadding`. [(#4136)](https://github.com/patternfly/patternfly-react/pull/4136)
-- **WizardHeader**: Removed prop `ariaLabelCloseButton` in favor of `closeButtonAriaLabel` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
+  - Removed `inPage` prop. By default the Wizard will be displayed in page, filling its parent container. If the consumer passes a managed `isOpen` flag, then the Wizard will be displayed in a modal. [(#4140)](https://github.com/patternfly/patternfly-react/pull/4140)
+- **WizardBody:** 
+  - Renamed `hasBodyPadding` to `hasNoBodyPadding`. [(#4136)](https://github.com/patternfly/patternfly-react/pull/4136)
+- **WizardHeader**: 
+  - Removed prop `ariaLabelCloseButton` in favor of `closeButtonAriaLabel` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
 - **WizardNav**:
   - Removed prop `ariaLabel` in favor of `aria-label` [(#3924)](https://github.com/patternfly/patternfly-react/pull/3924)
   - Removed prop `isCompactNav`, all instances of it should be removed from your application. [(#4142)](https://github.com/patternfly/patternfly-react/pull/4142)
 
-- **WizardNavItem**: Renamed prop `text` to `content`. The type of the prop has been changed to React.ReactNode to allow for flexibility. [(#4063)](https://github.com/patternfly/patternfly-react/pull/4063)
+- **WizardNavItem**: 
+  - Renamed prop `text` to `content`. The type of the prop has been changed to `React.ReactNode` to allow for flexibility. [(#4063)](https://github.com/patternfly/patternfly-react/pull/4063)
 
 ### React charts
 - Updated Victory to package versions to 34.x. [(#3974)](https://github.com/patternfly/patternfly-react/pull/3974)
