@@ -230,8 +230,11 @@ Additional issues: https://github.com/patternfly/patternfly/issues/2725
 ## chore(table): update types in table [(#3296)](https://github.com/patternfly/patternfly-react/pull/3296)
 - Change type of `onSelect` in Table from `(event: React.ChangeEvent<HTMLInputElement>) => void` to `(event: React.FormEvent<HTMLInputElement>) => void`
 
+## fix(charts): Update types to match latest Victory packages [(#4304)](https://github.com/patternfly/patternfly-react/pull/4304)
+- Updated Victory to package versions to 34.3.8
+
 ## fix(charts): Bump Victory packages [(#3974)](https://github.com/patternfly/patternfly-react/pull/3974)
-- Updated Victory to package versions to 34.x
+- Updated Victory to package versions to 34.1.3
 
 ## fix(charts): Update react-charts types [(#4138)](https://github.com/patternfly/patternfly-react/pull/4138)
 - Removed the @types/victory dependency and updated the PatternFly charts to use the types introduced with Victory 34.x
