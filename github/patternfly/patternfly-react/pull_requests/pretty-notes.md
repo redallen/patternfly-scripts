@@ -285,9 +285,11 @@ Hey Fliers, we've been busy for the past 9 weeks keeping up with changes to Patt
   - Renamed prop `text` to `content`. The type of the prop has been changed to `React.ReactNode` to allow for flexibility. [(#4063)](https://github.com/patternfly/patternfly-react/pull/4063)
 
 ### React charts
+- Updated Victory 34.3.9 packages (where applicable) to fix an issue with the bullet chart and tooltip truncation. [(#4330)](https://github.com/patternfly/patternfly-react/pull/4330)
+- Removed the `allowTooltip` prop from `ChartVoronoiContainer` because it was a noop. [(#4330)](https://github.com/patternfly/patternfly-react/pull/4330)
+- Removed the `@types/victory` dependency and updated the PatternFly charts to use the types introduced with Victory 34.x. [(#4138)](https://github.com/patternfly/patternfly-react/pull/4138)
 - Update types to match latest Victory 34.3.8 packages. [(#4304)](https://github.com/patternfly/patternfly-react/pull/4304)
 - Updated Victory to package versions to 34.1.3. [(#3974)](https://github.com/patternfly/patternfly-react/pull/3974)
-- Removed the `@types/victory` dependency and updated the PatternFly charts to use the types introduced with Victory 34.x. [(#4138)](https://github.com/patternfly/patternfly-react/pull/4138)
 - Updated label prop types to sync with Victory 34.x. [(#4152)](https://github.com/patternfly/patternfly-react/pull/4152)
 - Use `containerComponent={<VictoryZoomComponent />}` with Chart instead of `allowZoom`. [(#4278)](https://github.com/patternfly/patternfly-react/pull/4278)
 - Use `containerComponent={<VictoryZoomComponent />}` with ChartGroup instead of `allowZoom`. [(#4278)](https://github.com/patternfly/patternfly-react/pull/4278)

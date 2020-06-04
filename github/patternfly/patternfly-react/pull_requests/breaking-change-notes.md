@@ -246,3 +246,8 @@ Additional issues: https://github.com/patternfly/patternfly/issues/2725
 - Use `containerComponent={<VictoryZoomComponent />}` with Chart instead of `allowZoom`
 - Use `containerComponent={<VictoryZoomComponent />}` with ChartGroup instead of `allowZoom`
 
+## fix(charts): Update Victory 34.3.9 packages (where applicable) [(#4330)](https://github.com/patternfly/patternfly-react/pull/4330)
+- Fixed an issue with the bullet chart and tooltip truncation. 
+
+## fix(charts): Removed the `allowTooltip` prop from `ChartVoronoiContainer` [(#4330)](https://github.com/patternfly/patternfly-react/pull/4330)
+- The `allowTooltip` prop was remove from `ChartVoronoiContainer` because it was a noop -- Victory always provides a default tooltip.
